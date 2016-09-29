@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Main Page</title>
+    <link rel="stylesheet" href="../css/common.css">
+    <script src="../js/countdown.js" type="text/javascript"></script>
+</head>
+
+<body>
+    <table style="font-size: 2rem">
+        <thead>
+            <td>Description</td>
+            <td>Remaining Time</td>
+        </thead>
+        <tbody>
+            {{range $idx, $data := .}}
+            <tr>
+                <td>{{$data.Label}}</td>
+                <td>
+                    <script type="application/javascript">
+                        var clk = new Countdown({year: {{$data.Year}},
+						 month: {{$data.Month}},
+						 day: {{$data.Day}},
+						 hour: {{$data.Hours}},
+						 minute: {{$data.Minutes}},
+						 timezone: -7,
+						 rangeHi:"day",
+						 width:300, 
+ 						 height:60,  
+						 style: "flip"
+						 });
+                </script>
+            </td>
+            </tr>
+            {{end}}
+        </tbody>
+    </table>
+</body>
+
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Main Page</title>
+    <link rel="stylesheet" href="../css/common.css">
+</head>
+
+<body>
+    <form method="post">
+    <div>
+        <div>
+            <input type="submit" value="UserLogin" name="cmdbutton">
+        </div>
+    </div>
+
+
+    <!--User login dialog box.-->
+        <div id="openLogin" class="modalDialog">
+            <div class="inputfieldcolumn" style="height: 85px">
+                <div class="inputfieldcolumn">
+                    <label>Username:<input style="left: 7px;" type="text" name="username" autofocus></label>
+                    <label style="top: 3px;">Password:<input style="left: 7px;" type="password" name="password"></label>
+                </div>
+                <div class="inputfieldrow" style="top: 8px">
+                    <button type="submit" name="cmdbutton" value="Login" onclick="parent.location='#'">Log in</button>
+                    <button type="submit" name="cmdbutton" value="Register" onclick="parent.location='#'">Register</button>
+                </div>
+            </div>
+        </div>
+
+
+    <!--User registration dialog box.-->
+        <div id="openRegistration" class="modalDialog">
+            <div class="inputfieldcolumn">
+                <div class="inputfieldcolumn">
+                    <label>Username:<input style="left: 7px;" id="enterUsername" type="text" name="newusername" autofocus></label>
+                    <label>Password:<input style="left: 7px;" id="Password1" type="password" name="newpassword"></label>
+                    <label style="left: 5px;">Confirm:<input style="left: 8px;" id="Password2" type="password" name="confirm"></label>
+                    <label>Full Name:<input style="left: 7px;" type="text" name="fullname"></label>
+                    <div class="inputfieldrow">
+                        <label style="right: 22px;">Timezones:
+                            <select style="position: relative; left: 2px;" name="timezone">
+                                <option value="-8">Pacific</option>
+                                <option value="-7">Mountain</option>
+                                <option value="-6">Central</option>
+                                <option value="-5">Eastern</option>
+                            </select>
+                        </label>
+                        <label style="top: 2px; right: 10px;"><input style="right: 3px; top: 1px;" type="checkbox" name="dst" value="1">DST?</label>
+                    </div>
+                </div>
+                <div class="inputfieldrow" style="top: 8px">
+                    <button type="submit" name="cmdbutton" value="OK" onclick="parent.location='#'">OK</button>
+                    <button type="submit" name="cmdbutton" value="Cancel" onclick="parent.location='#'">Cancel</button>
+                </div>
+            <h1 id="usedmsg" style="position: relative; top: 12px; color: yellow;"></h1>
+            </div>
+        </div>
+
+
+    </form>
+    <script src="../js/ajax.js"></script>
+</body>
+
+</html>
