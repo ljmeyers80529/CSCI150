@@ -81,7 +81,7 @@ func WriteNewUserInformation(res http.ResponseWriter, req *http.Request) (regist
 			Username: un,
 			Timezone: toInt(req, "timezone"),
 			DST:      req.FormValue("dst") == "1",
-			loggedIn: true,
+			LoggedIn: true,
 		}
 		if err = writeDataStore(ctx, nameDict, un, &names); err == nil {
 			err = WriteUserInformation(ctx, req)

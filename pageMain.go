@@ -33,7 +33,7 @@ func pageMain(res http.ResponseWriter, req *http.Request) {
 			}
 		}
 	}
-	tpl.ExecuteTemplate(res, "main.html", nil)
+	tpl.ExecuteTemplate(res, "main.html", userInformation)
 }
 
 // check if username exists.
@@ -55,10 +55,10 @@ func checkUserLogin(res http.ResponseWriter, req *http.Request) bool {
 	pass := EncryptPassword(req.FormValue("password"))
 
 	log.Infof(ctx, "EPass: %v", pass)
-	userInformation = userInformationType{"", "", "", "", -8, true, false} // defaults.
+	userInformation = userInformationType{"", "", "", "", -8, true, false, nil, nil} // defaults.
 	if uuidKey = SearchUser(ctx, user); uuidKey != "" {
 		ReadUserInformation(ctx, req, uuidKey)
-		userInformation.loggedIn = userInformation.Password == pass
+		userInformation.LoggedIn = userInformation.Password == pass
 	}
-	return userInformation.loggedIn
+	return userInformation.LoggedIn
 }
