@@ -1,0 +1,117 @@
+html, body, #atf, #btf, #gallery{
+    padding: 0;
+    margin: 0;
+    border:0;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+
+body{
+    background-color: beige;
+}
+
+a{
+    color: white;
+}
+
+/*div #MainLogo figure img{
+    height: 500px;
+
+}*/
+
+ #s{
+     width:35%;
+
+}
+
+ #down{
+
+     border-collapse: collapse;
+     border: 1px solid black;
+     font-family: fantasy;
+     width:50%;
+ }
+
+
+
+#submit{
+    font-family: fantasy ;
+}
+
+
+#nav {
+
+    /*position: fixed;*/
+    top: 0;
+    width: 100%;
+    height: 60px;
+    border-bottom: 1px inset black;
+    font-family: Avenir, Pier Regular, sans-serif;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    background-color: crimson;
+}
+
+#nav h1{
+    color: black;
+}
+body{
+    color: black;
+}
+
+#nav ul{
+    list-style: none;
+    padding:0;
+    margin:5px;
+    display: flex;
+    flex-direction:row;
+    justify-content:flex-end;
+    width:100%;
+}
+
+#nav ul li{
+    margin-right: 10px;
+    display: block;
+    text-align:right;
+    font-family: fantasy;
+}
+
+
+@import url(http://fonts.googleapis.com/css?family=Roboto:400);
+
+.container {
+    padding: 25px;
+    position: fixed;
+}
+
+.form-login {
+    background-color: crimson;
+    padding-top: 10px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 15px;
+    border-color:#d2d2d2;
+    border-width: 5px;
+    box-shadow:0 1px 0 #cfcfcf;
+}
+
+h4 {
+    border:0 solid #fff;
+    border-bottom-width:1px;
+    padding-bottom:10px;
+    text-align: center;
+}
+
+.form-control {
+    border-radius: 10px;
+}
+
+.wrapper {
+    text-align: center;
+}
+
+
+
