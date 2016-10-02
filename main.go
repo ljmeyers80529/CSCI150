@@ -1,8 +1,8 @@
 package csci150
 
 import (
-    "net/http"
-    "html/template"
+	"html/template"
+	"net/http"
 )
 
 func init() {
@@ -10,10 +10,13 @@ func init() {
 	configureResourceLocation("css", "css")
 	configureResourceLocation("images", "js/images")
 	configureResourceLocation("js", "js")
-	http.Handle("/favicon.ico", http.NotFoundHandler()) // ignore favicon request (error 404)
-	http.HandleFunc("/", pageMain)                      // main page after user logs in.
-	http.HandleFunc("/username/check", pageMainUsernameCheck)      // verify username is unique.
-	http.HandleFunc("/counters", pageTest)
+	http.Handle("/favicon.ico", http.NotFoundHandler())           // ignore favicon request (error 404)
+	http.HandleFunc("/", pageMain)                                // main page after user logs in.
+	http.HandleFunc("/username/check", pageRegisterUsernameCheck) // verify username is unique.
+	http.HandleFunc("/login", pageLogin)
+	http.HandleFunc("/register", pageRegister)
+
+	http.HandleFunc("/count", pageTest)
 	tpl = template.Must(template.ParseGlob("html/*.html"))
 }
 
