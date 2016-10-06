@@ -6,17 +6,22 @@ import (
 )
 
 func init() {
-	configureResourceLocation("img", "images")
+	configureResourceLocation("images", "img")
 	configureResourceLocation("css", "css")
 	configureResourceLocation("images", "js/images")
 	configureResourceLocation("js", "js")
 	http.Handle("/favicon.ico", http.NotFoundHandler())           // ignore favicon request (error 404)
-	http.HandleFunc("/", pageMain)                                // main page after user logs in.
-	http.HandleFunc("/username/check", pageRegisterUsernameCheck) // verify username is unique.
+	http.HandleFunc("/", pageMain)                                // main page.
 	http.HandleFunc("/login", pageLogin)
+	http.HandleFunc("/logout", pageLogout)
 	http.HandleFunc("/register", pageRegister)
+	http.HandleFunc("/username/check", pageRegisterUsernameCheck) // verify username is unique.
+	http.HandleFunc("/movies", pageMovies)
+	http.HandleFunc("/games", pageGames)
+	http.HandleFunc("/tv", pageTV)
+	// http.HandleFunc("/result", pageResult)
 
-	http.HandleFunc("/count", pageTest)
+	// http.HandleFunc("/count", pageTest)
 	tpl = template.Must(template.ParseGlob("html/*.html"))
 }
 

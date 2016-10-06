@@ -3,39 +3,28 @@
 <head>
     <title>CountDown</title>
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-    <link rel = "stylesheet" type="text/css" href="../assets/main.css">
+    <link rel = "stylesheet" type="text/css" href="../css/main.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>#homepage {visibility: hidden;}</style>
 </head>
 
 <body>
+    {{template "header" .}}
 
-<div id ="nav">
-
-    <h1>TheCountDownSite</h1>
-    <img src = "../assets/img/giphy.gif" width="50" height=50">
-    <ul>
-        <li><a href="index.html">Home</a> </li>
-        <li><a href="movies.html">Movies</a></li>
-        <li><a href="games.html">Games</a> </li>
-        <li><a href="tv.html">Tv Shows</a> </li>
-        <li><a href="login.html">Login</a> </li>
-    </ul>
-
-
-</div>
-
+<form method="POST">
 <div class="container">
     <div class="row">
         <div class="col-md-offset-5 col-md-3">
             <div class="form-login">
                 <h4>Welcome back.</h4>
-                <input type="text" id="userName" class="form-control input-sm chat-input" placeholder="username" />
+                <input type="text" id="userName" class="form-control input-sm chat-input" placeholder="username" name="username" autofocus/>
                 </br>
-                <input type="text" id="userPassword" class="form-control input-sm chat-input" placeholder="password" />
+                <input type="password" id="userPassword" class="form-control input-sm chat-input" placeholder="password" name="password" />
                 </br>
                 <div class="wrapper">
             <span class="group-btn">
-                <a href="#" class="btn btn-primary btn-md">login <i class="fa fa-sign-in"></i></a>
+                <button class="btn btn-primary btn-md buttonlink" type="submit" name="cmdbutton" value="Login">Login <i class="fa fa-sign-in"></i></button>
+                <button class="btn btn-primary btn-md buttonlink" type="submit" name="cmdbutton" value="Register">Register</button>
             </span>
                 </div>
             </div>
@@ -43,4 +32,5 @@
         </div>
     </div>
 </div>
+</form>
 </body>

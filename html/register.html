@@ -2,23 +2,32 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <title>Main Page</title>
-    <!--<link rel="stylesheet" href="../css/common.css">-->
-    <style>
-        * {border: 1px solid blue;}
-    </style>
+    <title>CountDown</title>
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../css/main.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>#homepage {visibility: hidden;}</style>
 </head>
 
 <body>
+    {{template "header" .}}
     <form method="post">
-    <div style="height: 700px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
-                    <label>Username:<input style="left: 7px;" id="enterUsername" type="text" name="newusername" autofocus></label>
-                    <label>Password:<input style="left: 7px;" id="Password1" type="password" name="newpassword"></label>
-                    <label style="left: 5px;">Confirm:<input style="left: 8px;" id="Password2" type="password" name="confirm"></label>
-                    <label>Full Name:<input style="left: 7px;" type="text" name="fullname"></label>
-                    <div class="inputfieldrow">
-                        <label style="right: 22px;">Timezones:
+        <div class="container">
+            <div class="row">
+                <div class="col-md-offset-5 col-md-3">
+                    <div class="form-login">
+                        <h4>Registration.</h4>
+                        <input type="text" id="enterUsername" class="form-control input-sm chat-input" placeholder="username" name="newusername" autofocus/>
+                        </br>
+                        <input type="text" id="username" class="form-control input-sm chat-input" placeholder="fullname" name="fullname"/>
+                        </br>
+                        <input type="password" id="userPassword" class="form-control input-sm chat-input" placeholder="password" name="newpassword" />
+                        </br>
+                        <input type="password" id="userPassword" class="form-control input-sm chat-input" placeholder="confirm" name="confirm" />
+                        </br>
+                        <div class="wrapper">
+                            <div>
+                                <label style="right: 22px;">Timezones:
                             <select style="position: relative; left: 2px;" name="timezone">
                                 <option value="-8">Pacific</option>
                                 <option value="-7">Mountain</option>
@@ -26,16 +35,21 @@
                                 <option value="-5">Eastern</option>
                             </select>
                         </label>
-                        <label style="top: 2px; right: 10px;"><input style="right: 3px; top: 1px;" type="checkbox" name="dst" value="1">DST?</label>
+                                <label style="top: 2px; right: 10px;"><input style="right: 3px; top: 1px;" type="checkbox" name="dst" value="1">DST?</label>
+                            </div>
+                            <span class="group-btn">
+                <button class="btn btn-primary btn-md buttonlink" type="submit" name="cmdbutton" value="OK">OK</button>
+                <button class="btn btn-primary btn-md buttonlink" type="submit" name="cmdbutton" value="Cancel">Cancel</button>
+            </span>
+                            <h4 id="usedmsg" style="position: relative; top: 12px; color: yellow;"></h4>
+                        </div>
                     </div>
-                <div class="inputfieldrow" style="top: 8px">
-                    <button type="submit" name="cmdbutton" value="OK">OK</button>
-                    <button type="submit" name="cmdbutton" value="Cancel">Cancel</button>
                 </div>
-            <h1 id="usedmsg" style="position: relative; top: 12px; color: yellow;"></h1>
-			</form>
-    </div>
+            </div>
+        </div>
     </form>
+
+
     <script src="../js/ajax.js"></script>
 </body>
 

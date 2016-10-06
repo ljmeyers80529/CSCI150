@@ -4,20 +4,17 @@ import (
 	"net/http"
 
 	"google.golang.org/appengine"
-	"google.golang.org/appengine/log"
 )
 
 func pageLogin(res http.ResponseWriter, req *http.Request) {
 	if req.Method == "POST" {
-		ctx := appengine.NewContext(req)
 		fn := req.FormValue("cmdbutton")
-		log.Infof(ctx, "Posting...%s", fn)
 		switch fn {
 		case "Register":
 			http.Redirect(res, req, "/register", http.StatusSeeOther)
 		case "Login":
 			if checkUserLogin(res, req) {
-				http.Redirect(res, req, "/count", http.StatusSeeOther)
+				http.Redirect(res, req, "/", http.StatusSeeOther)
 			}
 		}
 	}
@@ -33,7 +30,6 @@ func checkUserLogin(res http.ResponseWriter, req *http.Request) bool {
 	user := req.FormValue("username")
 	pass := EncryptPassword(req.FormValue("password"))
 
-	log.Infof(ctx, "EPass: %v", pass)
 	userInformation = userInformationType{"", "", "", "", -8, true, false, nil, nil} // defaults.
 	if uuidKey = SearchUser(ctx, user); uuidKey != "" {
 		ReadUserInformation(ctx, req, uuidKey)
@@ -41,3 +37,4 @@ func checkUserLogin(res http.ResponseWriter, req *http.Request) bool {
 	}
 	return userInformation.LoggedIn
 }
+ 
