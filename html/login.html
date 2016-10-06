@@ -1,27 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <title>Main Page</title>
-    <!--<link rel="stylesheet" href="../css/common.css">-->
-    <style>
-        * {border: 1px solid blue;}
-    </style>
+    <title>CountDown</title>
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel = "stylesheet" type="text/css" href="../assets/main.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body>
-    <form method="post">
-    <div style="height: 700px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
-        <label>User name:<input style="position: relative; left: 5px;" type="text" name="username" autofocus></label>
-        <label>Password:<input style="position: relative; left: 10px;" type="password" name="password"></label>
-        <br>
-        <div style="display: flex; flex-direction: row">
-            <input style="margin-right: 10px;" type="submit" value="Login" name="cmdbutton">
-            <input style="margin-right: 10px;" type="submit" value="Register" name="cmdbutton">
+
+<div id ="nav">
+
+    <h1>TheCountDownSite</h1>
+    <img src = "../assets/img/giphy.gif" width="50" height=50">
+    <ul>
+        <li><a href="index.html">Home</a> </li>
+        <li><a href="movies.html">Movies</a></li>
+        <li><a href="games.html">Games</a> </li>
+        <li><a href="tv.html">Tv Shows</a> </li>
+        <li><a href="login.html">Login</a> </li>
+    </ul>
+
+
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-offset-5 col-md-3">
+            <div class="form-login">
+                <h4>Welcome back.</h4>
+                <input type="text" id="userName" class="form-control input-sm chat-input" placeholder="username" />
+                </br>
+                <input type="text" id="userPassword" class="form-control input-sm chat-input" placeholder="password" />
+                </br>
+                <div class="wrapper">
+            <span class="group-btn">
+                <a href="#" class="btn btn-primary btn-md">login <i class="fa fa-sign-in"></i></a>
+            </span>
+                </div>
+            </div>
+
         </div>
     </div>
-    </form>
+</div>
 </body>
-
-</html>

@@ -6,7 +6,7 @@ import (
 )
 
 func init() {
-	configureResourceLocation("img", "image")
+	configureResourceLocation("img", "images")
 	configureResourceLocation("css", "css")
 	configureResourceLocation("images", "js/images")
 	configureResourceLocation("js", "js")
