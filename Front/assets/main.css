@@ -5,6 +5,7 @@ html, body, #btf, #gallery{
     height: 100%;
     box-sizing: border-box;
 }
+
 .box{
   list-style-type: decimal;
   border: 1px solid #eee;

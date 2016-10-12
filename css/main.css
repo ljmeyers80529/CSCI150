@@ -1,9 +1,24 @@
-html, body,  #btf, #gallery{
+html, body, #btf, #gallery{
     padding: 0;
     margin: 0;
     border:0;
     height: 100%;
     box-sizing: border-box;
+}
+
+.box{
+  list-style-type: decimal;
+  border: 1px solid #eee;
+  margin: 0;
+  padding: 0;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  border-collapse: collapse;
+  font-family: fantasy;
+  width:50%;
+}
+.box:hover {
+    box-shadow: 0 8px 12px 0 rgba(0,0,0,0.2)
 }
 
 
@@ -24,14 +39,6 @@ a{
      width:35%;
 
 }
-
- #down{
-
-     border-collapse: collapse;
-     border: 1px solid black;
-     font-family: fantasy;
-     width:50%;
- }
 
 
 
@@ -111,14 +118,4 @@ h4 {
 
 .wrapper {
     text-align: center;
-}
-
-.buttonlink {                                   /* make a button look like a hyperlink.*/
-    background: none!important;
-    text-decoration: underline;
-    border: none;
-    padding: none!important;
-    font: inherit;
-    cursor: pointer;
-    color: white;
 }
