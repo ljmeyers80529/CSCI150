@@ -6,12 +6,13 @@ import (
 )
 
 func init() {
+	movieAPI = tmdbgae.Init(apikey)
 	configureResourceLocation("images", "img")
 	configureResourceLocation("css", "css")
 	configureResourceLocation("images", "js/images")
 	configureResourceLocation("js", "js")
-	http.Handle("/favicon.ico", http.NotFoundHandler())           // ignore favicon request (error 404)
-	http.HandleFunc("/", pageMain)                                // main page.
+	http.Handle("/favicon.ico", http.NotFoundHandler()) // ignore favicon request (error 404)
+	http.HandleFunc("/", pageMain)                      // main page.
 	http.HandleFunc("/login", pageLogin)
 	http.HandleFunc("/logout", pageLogout)
 	http.HandleFunc("/register", pageRegister)
