@@ -18,12 +18,11 @@
     <li><a href="movies.html">Movies</a></li>
     <li><a href="games.html">Games</a> </li>
     <li><a href="tv.html">Tv Shows</a> </li>
-    <li><a href="login.html">Login</a> </li>
+    <li><a href="login.html">Login</a>
+     <li> <form id ="s">
+        <input type="text" name="search" placeholder="Search..">
+      </form></li>
   </ul>
-  <div id="sbar">
-    <form id ="s">
-      <input type="text" name="search" placeholder="Search..">
-    </form></div>
 </div>
 
 <h1 id="res">Movie Title</h1>
@@ -38,6 +37,16 @@
   <div class="columnsC">
     <h1>CountDown</h1>
     <ol class="CD">
+      <script src="../JavaS/countdown.js" type="text/javascript"></script>
+      <script type="application/javascript">
+        var myCountdownTest = new Countdown({
+          year: (new Date().getFullYear() + 1),
+          month	: 4,
+          day		: 1,
+          width	: 300,
+          height	: 50
+        });
+      </script>
     </ol>
   </div>
 
