@@ -6,7 +6,7 @@ body{
     box-sizing: border-box;
 }
 body{
-    background-color: beige;
+    background-color: white;
 }
 
 #nav ul{
@@ -15,7 +15,7 @@ body{
     margin:5px;
     display: flex;
     flex-direction:row;
-    justify-content:left;
+    justify-content:flex-end;
     width:100%;
 }
 
@@ -28,7 +28,7 @@ body{
 
 
 #nav h1{
-    color: black;
+    color: white;
 }
 
 #nav {
@@ -41,23 +41,27 @@ body{
     font-size: 24px;
     display: flex;
     align-items: center;
-    background-color: crimson;
+    background-color: #364f90;
 }
 
 #nav a{
     color: white;
 }
 
-#bar {
-    top: 0;
+form {
 
+    display: inline-flex;
 }
 
+#sbar{
+    margin: 5px;
 }
 
-{
-    box-sizing: border-box;
+#sbar{
+    width:300px;
 }
+
+
 
 /* Create three columns of equal width */
 .columnsA{
@@ -87,7 +91,7 @@ body{
 }
 /* Style the list */
 .Poster {
-    list-style-type: decimal;
+    list-style-type: georgian;
     border: 1px solid #eee;
     margin: 0;
     padding: 0;
