@@ -6,7 +6,7 @@ body{
     box-sizing: border-box;
 }
 body{
-    background-color: beige;
+    background-color: white;
 }
 
 #nav ul{
@@ -28,7 +28,7 @@ body{
 
 
 #nav h1{
-    color: black;
+    color: white;
 }
 
 #nav {
@@ -41,7 +41,7 @@ body{
     font-size: 24px;
     display: flex;
     align-items: center;
-    background-color: crimson;
+    background-color:#364f90;
 }
 
 #nav a{
@@ -82,7 +82,7 @@ body{
     background-image: url('searchicon.png');
     background-position: center;
     background-repeat: no-repeat;
-   /* padding: 12px 20px 12px 40px;*/
+    /* padding: 12px 20px 12px 40px;*/
     -webkit-transition: width 0.4s ease-in-out;
     transition: width 0.4s ease-in-out;
 }
@@ -102,7 +102,7 @@ body{
 }
 /* Style the list */
 .Top {
-    list-style-type: decimal;
+    list-style-type: georgian;
     border: 1px solid #eee;
     margin: 0;
     padding: 0;
@@ -175,3 +175,6 @@ body{
         width: 100%;
     }
 }
+
+
+

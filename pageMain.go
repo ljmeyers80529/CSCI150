@@ -6,6 +6,7 @@ import (
 
 // main (top) web page.
 func pageMain(res http.ResponseWriter, req *http.Request) {
+	userDefault()
 	if req.Method == "POST" {
 	// 	fn := req.FormValue("cmdbutton")
 	// 	switch fn {
