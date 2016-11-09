@@ -1,46 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <title>CountDown</title>
-    <link rel = "stylesheet" type="text/css" href="../css/movies.css">
+    <title>CountDown -- Television</title>
+    <link rel="stylesheet" type="text/css" href="../css/main.css">
+    <link rel="stylesheet" type="text/css" href="../css/movies.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body>
     {{template "header" .}}
 
-<img src="../img/huns.svg" id="huns" width="200" height="200">
-<center>
-    <div id="mass">
-        <div class="SearchBar">
-        <form method = "POST">
-                <input type="text" name="search" placeholder="Search.." id="s">
-                <button class="specify">Movies & TV</button>
-                <button class="specify">Games</button>
-        </div>
+    <img src="../img/diningPhilo.svg" id="huns" width="200" height="200">
+    <center>
+        <form method="POST">
+            <div id="mass">
+                <div class="SearchBar">
+                    <input id="s" type="text" name="search" placeholder="Search...">
+                    <button class="specify" name="cmdSearch" value="movies_tv">Movies & TV</button>
+                    <button class="specify" name="cmdSearch" value="games">Games</button>
+                </div>
 
-        <div class="columns">
-            <h1>Top Rated</h1>
-            <ol class="Top">
-                <li><button class ="button"><a href="#" class="button1"><p>Movie1</p></a></button></li>
-                <li><button class ="button"><a href="#" class="button1"><p>Movie2</p></a></button></li>
-                <li><button class ="button"><a href="#" class="button1"><p>Movie3</p></a></button></li>
-                <li><button class ="button"><a href="#" class="button1"><p>Movie4</p></a></button></li>
-            </ol>
-        </div>
-
-        <div class="columns1">
-            <h1>Upcoming TV</h1>
-            <ol class="Upcoming">
-                <li><button class ="button"><a href="#" class="button1"><p>Movie1</p></a></button></li>
-                <li><button class ="button"><a href="#" class="button1"><p>Movie2</p></a></button></li>
-                <li><button class ="button"><a href="#" class="button1"><p>Movie3</p></a></button></li>
-                <li><button class ="button"><a href="#" class="button1"><p>Movie4</p></a></button></li>
-            </ol>
-        </div>
-            </form>
-
-    </div>
-</center>
+                <div class="movieMain">
+                    <div class="movieTop">
+                        <div class="movieTab">
+                            <h2>Top Rated</h2>
+                            <table style="font-size: 1.25rem">
+                                <thead>
+                                    <td></td>
+                                    <td>Show Title</td>
+                                    <td>Rating</td>
+                                </thead>
+                                <tbody>
+                                    {{range $idx, $data := .Top}}
+                                    <tr>
+                                        <td class="buttoncenter"><button type="submit" name="cmdID" value="{{$data.ID}}">Info: {{printf "%06d" $data.ID}}</button></td>
+                                        <td>{{$data.Title}}</td>
+                                        <td>{{$data.Rating}}</td>
+                                    </tr>
+                                    {{end}}
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="movieTab">
+                            <h2>Popular</h2>
+                            <table style="font-size: 1.25rem">
+                                <thead>
+                                    <td></td>
+                                    <td>Movie Title</td>
+                                    <td>Rating</td>
+                                </thead>
+                                <tbody>
+                                    {{range $idx, $data := .Pop}}
+                                    <tr>
+                                        <td class="buttoncenter"><button type="submit" name="cmdID" value="{{$data.ID}}">Info: {{printf "%06d" $data.ID}}</button></td>
+                                        <td>{{$data.Title}}</td>
+                                        <td>{{$data.Rating}}</td>
+                                    </tr>
+                                    {{end}}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    {{if .MovieTvGame.ID}}
+                    <div class="movieDetail">
+                        <img class="poster" src="{{.MovieTvGame.Image}}">
+                        <div class="movieDetailMsg">
+                            <h4>{{.MovieTvGame.Description}}</h4>
+                            <h4>{{.MovieTvGame.TVEpisodes}} Episodes over {{.MovieTvGame.TVSeasons}} Seasons.</h4>
+                            <h4>Genres:{{range $idx, $g := .MovieTvGame.Genres}}&nbsp{{$g}}&nbsp{{end}}
+                       </div>
+                    </div>
+                    {{end}}
+                </div>
+        </form>
+    </center>
 
 </body>

@@ -1,111 +1,144 @@
-<style>
 body{
-  background: none;
-}
-#res{
-  text-align: center;
-}
-.SearchBar{
-  input[type=text] {
-    width: 500px;
+    padding: 0;
+    margin: 0;
+    border:0;
+    height: 100%;
     box-sizing: border-box;
-    border: 2px solid #ccc;
-    border-radius: 4px;
-    font-size: 16px;
-    background-color: white;
-    background-image: url('searchicon.png');
-    background-position: 10px 10px;
-    background-repeat: no-repeat;
-    padding: 12px 20px 12px 40px;
-    -webkit-transition: width 0.4s ease-in-out;
-    transition: width 0.4s ease-in-out;
-  }
+}
+body{
+    background-color: beige;
+}
+
+#nav ul{
+    list-style: none;
+    padding:0;
+    margin:5px;
+    display: flex;
+    flex-direction:row;
+    justify-content:left;
+    width:100%;
+}
+
+#nav ul li{
+    margin-right: 10px;
+    display: block;
+    text-align:right;
+    font-family: fantasy;
+}
+
+
+#nav h1{
+    color: black;
+}
+
+#nav {
+    /*position: absolute;*/
+    top: 0;
+    width: 100%;
+    height: 60px;
+    border-bottom: 1px inset black;
+    font-family: Avenir, Pier Regular, sans-serif;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    background-color: crimson;
+}
+
+#nav a{
+    color: white;
+}
+
+#bar {
+    top: 0;
+
+}
+
 }
 
 {
-   box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 /* Create three columns of equal width */
 .columnsA{
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  top: 25%;
-  width: 100%;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    top: 25%;
+    width: 100%;
 }
 
 .columnsB {
-   float: left;
-   width: 33.3%;
-   padding: 8px;
+    float: left;
+    width: 33.3%;
+    padding: 8px;
 }
 
 .columnsC {
-   float: right;
-   position;
-   width: 33.3%;
-   padding: 8px;
+    float: right;
+    position;
+    width: 33.3%;
+    padding: 8px;
 }
 .columnsD {
-   float: right;
-   width: 33.3%;
-   padding: 8px;
+    float: right;
+    width: 33.3%;
+    padding: 8px;
 }
 /* Style the list */
 .Poster {
-   list-style-type: georgian;
-   border: 1px solid #eee;
-   margin: 0;
-   padding: 0;
-   -webkit-transition: 0.3s;
-   transition: 0.3s;
+    list-style-type: decimal;
+    border: 1px solid #eee;
+    margin: 0;
+    padding: 0;
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
 }
 .CD {
 
-   list-style-type: none;
-   border: 1px solid #eee;
-   margin: 0;
-   padding: 0;
-   -webkit-transition: 0.3s;
-   transition: 0.3s;
+    list-style-type: none;
+    border: 1px solid #eee;
+    margin: 0;
+    padding: 0;
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
 }
 .Rating {
 
-   list-style-type: none;
-   border: 1px solid #eee;
-   margin: 0;
-   padding: 0;
-   -webkit-transition: 0.3s;
-   transition: 0.3s;
+    list-style-type: none;
+    border: 1px solid #eee;
+    margin: 0;
+    padding: 0;
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
 }
 
 /* Add shadows on hover */
 .Poster:hover {
-   box-shadow: 0 8px 12px 0 rgba(0,0,0,0.2)
+    box-shadow: 0 8px 12px 0 rgba(0,0,0,0.2)
 }
 .CD:hover {
-   box-shadow: 0 8px 12px 0 rgba(0,0,0,0.2)
+    box-shadow: 0 8px 12px 0 rgba(0,0,0,0.2)
 }
 .Rating:hover {
-   box-shadow: 0 8px 12px 0 rgba(0,0,0,0.2)
+    box-shadow: 0 8px 12px 0 rgba(0,0,0,0.2)
 }
 
 /* Top movies header */
 .Poster.header {
-   background-color: #111;
-   color: white;
-   font-size: 25px;
+    background-color: #111;
+    color: white;
+    font-size: 25px;
 }
 .CD.header {
-   background-color: #111;
-   color: white;
-   font-size: 25px;
+    background-color: #111;
+    color: white;
+    font-size: 25px;
 }
 .Rating.header {
-   background-color: #111;
-   color: white;
-   font-size: 25px;
+    background-color: #111;
+    color: white;
+    font-size: 25px;
 }
 
 /* List items */
@@ -138,19 +171,22 @@ body{
 /* Change the width of the three columns to 100%
 (to stack horizontally on small screens) */
 @media only screen and (max-width: 600px) {
-   .columns {
-       width: 100%;
-   }
+    .columns {
+        width: 100%;
+    }
 }
 @media only screen and (max-width: 600px) {
-   .columns1 {
-       width: 100%;
-   }
+    .columns1 {
+        width: 100%;
+    }
 }
 @media only screen and (max-width: 600px) {
-   .columns2 {
-       width: 100%;
-   }
+    .columns2 {
+        width: 100%;
+    }
 }
 
-</style>
+#res{
+    text-align: center;
+}
+

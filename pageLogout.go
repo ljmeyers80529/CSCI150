@@ -5,6 +5,6 @@ import (
 )
 
 func pageLogout(res http.ResponseWriter, req *http.Request) {
-    userInformation = userInformationType{"", "", "", "", -8, true, false, nil, nil} // defaults.
+	userDefault()
     http.Redirect(res, req, "/", http.StatusSeeOther)
 }
