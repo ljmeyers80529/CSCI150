@@ -3,11 +3,10 @@ package csci150
 import (
 	"net/http"
 	"sort"
-	"fmt"
 
 	"golang.org/x/net/context"
 	"google.golang.org/appengine"
-	"google.golang.org/appengine/log"
+	"fmt"
 )
 
 func pageTV(res http.ResponseWriter, req *http.Request) {
@@ -15,21 +14,13 @@ func pageTV(res http.ResponseWriter, req *http.Request) {
 	userDefault()
 
 	if req.Method == "POST" {
-		info := toInt(req, "cmdID")									// get possible movie id to show detail.
-		searchCmd := req.FormValue("cmdSearch")						// get possible search type. 
-		search := req.FormValue("search")							// get possible title to seach for.
-
-		log.Infof(ctx, "Info %7d\tCmd: %-12s\tSearch: %s", info, searchCmd, search)
-		if info != 0 {
-			burl, _ := movieAPI.GetConfiguration(ctx)
-			tvi, _ := movieAPI.GetTvInfo(ctx, info, nil)
-			userInformation.MovieTvGame.ID = info
-			userInformation.MovieTvGame.Image = fmt.Sprintf("%s%s%s", burl.Images.BaseURL, burl.Images.PosterSizes[1], tvi.PosterPath)
-			userInformation.MovieTvGame.Description = tvi.Overview;
+		tvPost(ctx, req)
+		if userInformation.MovieTvGame.ID != 0 {		// no detail, search.
+			http.Redirect(res, req, fmt.Sprintf("%s#tvmodal", req.URL.Path), http.StatusFound)
 		}
 	}
-	userInformation.Top = topRatedTV(ctx) 							// overall most popular movies.
-	userInformation.Pop = popularTV(ctx) 							 // current most popular movies.
+	userInformation.Top = topRatedTV(ctx) // overall most popular movies.
+	userInformation.Pop = popularTV(ctx)  // current most popular movies.
 	sort.Sort(sort.Reverse(userInformation.Pop))
 	tpl.ExecuteTemplate(res, "tv.html", userInformation)
 }
