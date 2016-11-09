@@ -2,13 +2,14 @@ package csci150
 
 import (
 	"net/http"
-	"sort"
 	"strconv"
 	"strings"
 	"time"
+	"sort"
 
 	"golang.org/x/net/context"
 	"google.golang.org/appengine"
+	"google.golang.org/appengine/log"
 )
 
 func pageMovies(res http.ResponseWriter, req *http.Request) {
@@ -16,11 +17,14 @@ func pageMovies(res http.ResponseWriter, req *http.Request) {
 	userDefault()
 
 	if req.Method == "POST" {
-		moviePost(ctx, req)
-	}
-	userInformation.Counters = upcomingReleases(ctx) // upcomming moview releases.
-	userInformation.Top = topRatedMovies(ctx)        // overall most popular movies.
-	userInformation.Pop = popularMovies(ctx)         // current most popular movies.
+		info := toInt(req, "cmdID")									// get possible movie id to show detail.
+		searchCmd := req.FormValue("cmdSearch")						// get possible search type. 
+		search := req.FormValue("search")							// get possible title to seach for.
+		log.Infof(ctx, "Info %7d\tCmd: %-12s\tSearch: %s\n", info, searchCmd, search)
+	}  
+	userInformation.Counters = upcomingReleases(ctx)			// upcomming moview releases.
+	userInformation.Top = topRatedMovies(ctx)					// overall most popular movies.
+	userInformation.Pop = popularMovies(ctx)					// current most popular movies.
 	sort.Sort(sort.Reverse(userInformation.Pop))
 	sort.Sort(userInformation.Counters)
 	tpl.ExecuteTemplate(res, "movies.html", userInformation)
@@ -76,7 +80,7 @@ func upcomingReleases(ctx context.Context) cdUpcomming {
 			cnts = append(cnts, movie)
 		}
 	}
-	return cnts
+	return cnts;
 }
 
 // get US release date for specified movie.
@@ -88,7 +92,7 @@ func movieRelease(ctx context.Context, id int) (string, bool) {
 	pop2 := pop1.Countries
 	for _, rd := range pop2 {
 		if rd.Iso3166_1 == "US" {
-			found = dRelease < rd.ReleaseDate
+			found = dRelease < rd.ReleaseDate 
 			dRelease = rd.ReleaseDate
 			break
 		}
@@ -104,8 +108,6 @@ func (t topPopRated) Less(i, j int) bool { return t[i].Rating < t[j].Rating }
 
 /**************************************************  sort by release data  **************************************************/
 
-func (t cdUpcomming) Len() int      { return len(t) }
-func (t cdUpcomming) Swap(i, j int) { t[i], t[j] = t[j], t[i] }
-func (t cdUpcomming) Less(i, j int) bool {
-	return time.Date(t[i].Year, time.Month(t[i].Month), t[i].Day, 0, 0, 0, 0, time.UTC).String() < time.Date(t[j].Year, time.Month(t[j].Month), t[j].Day, 0, 0, 0, 0, time.UTC).String()
-}
+func (t cdUpcomming) Len() int           { return len(t) }
+func (t cdUpcomming) Swap(i, j int)      { t[i], t[j] = t[j], t[i] }
+func (t cdUpcomming) Less(i, j int) bool { return time.Date(t[i].Year, time.Month(t[i].Month), t[i].Day, 0, 0, 0, 0, time.UTC).String() < time.Date(t[j].Year, time.Month(t[j].Month), t[j].Day, 0, 0, 0, 0, time.UTC).String() }

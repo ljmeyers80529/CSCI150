@@ -19,10 +19,8 @@ type topRatedPop struct {
 
 // definition for maovie / tv / game detail.
 type movieTvGameInformation struct {
-	ID                    int
-	Image, Description    string
-	TVSeasons, TVEpisodes int
-	Genres               []string
+	ID    int
+	Image, Description string
 }
 
 // user's favorites / watch list.

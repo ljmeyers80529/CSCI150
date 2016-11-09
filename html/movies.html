@@ -77,7 +77,7 @@
                             {{$tz := .Timezone}}
                             {{range $idx, $data := .Counters}}
                             <tr>
-                                <td class="buttoncenter"><button type="submit" name="cmdUID" value="{{$data.ID}}">Info: {{printf "%06d" $data.ID}}</button></td>
+                                <td class="buttoncenter"><button type="submit" name="cmdID" value="{{$data.ID}}">Info: {{printf "%06d" $data.ID}}</button></td>
                                 <td>{{$data.Title}}</td>
                                 <td>
                                     <script type="application/javascript">
