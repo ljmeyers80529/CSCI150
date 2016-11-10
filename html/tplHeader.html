@@ -7,7 +7,7 @@
         <li><a href="/movies">Movies</a></li>
         <li><a href="/games">Games</a> </li>
         <li><a href="/tv ">Tv Shows</a> </li>
-        <li>{{if not .LoggedIn}}<a href="/login ">Login</a>{{else}}<a href="/logout ">Logout</a>{{end}} </li>
+        <li>{{if not .User.LoggedIn}}<a href="/login ">Login</a>{{else}}<a href="/logout ">Logout</a>{{end}} </li>
     </ul>
 </div>
 {{end}}

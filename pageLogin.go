@@ -30,7 +30,6 @@ func checkUserLogin(res http.ResponseWriter, req *http.Request) bool {
 	user := req.FormValue("username")
 	pass := EncryptPassword(req.FormValue("password"))
 
-	userDefault()
 	if uuidKey = SearchUser(ctx, user); uuidKey != "" {
 		ReadUserInformation(ctx, req, uuidKey)
 		userInformation.LoggedIn = userInformation.Password == pass

@@ -10,3 +10,6 @@ var tpl *template.Template              // html web page processing / parsing ob
 var userInformation userInformationType // logged in user's information and preferences.
 var movieAPI *tmdbgae.TMDb              // movie / tv database access object instance.
 var baseURL string						// base url to get images.
+var webInformation = webInformationType {
+	User: &userInformation,
+}

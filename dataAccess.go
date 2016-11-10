@@ -12,10 +12,9 @@ import (
 
 	"golang.org/x/net/context"
 	"google.golang.org/appengine"
-	// "google.golang.org/appengine/log"
 	"github.com/nu7hatch/gouuid"
 	"google.golang.org/appengine/datastore"
-	"google.golang.org/appengine/log"
+	// "google.golang.org/appengine/log"
 	"google.golang.org/appengine/memcache"
 )
 
@@ -89,7 +88,6 @@ func WriteNewUserInformation(res http.ResponseWriter, req *http.Request) (regist
 			http.Error(res, err.Error(), http.StatusInternalServerError)
 		}
 		registered = true
-		log.Infof(ctx, "User: %v", userInformation)
 	}
 	return
 }
@@ -194,11 +192,10 @@ func toInt(req *http.Request, key string) (val int) {
 }
 
 // set defaults.
-func userDefault() {
-	if userInformation.Timezone == 0 {
-		mtg := movieTvGameInformation{0, "", "", 0, 0, nil}
-		userInformation = userInformationType{"", "", "", "", -8, true, false, nil, nil, nil, nil, mtg} // defaults.
-	}
+func setUserDefault() {
+	mtg := movieTvGameInformation{0, "", "", "", 0, 0, nil, 0}
+	userInformation = userInformationType { "", "", "", "", -8, true, false, nil }
+	webInformation = webInformationType { &userInformation, nil, nil, nil, mtg, nil }
 }
 
 // tv information and search results.
@@ -206,31 +203,67 @@ func tvPost(ctx context.Context, req *http.Request) {
 	var g []string
 
 	info := toInt(req, "cmdID")             // get possible movie id to show detail.
-	searchCmd := req.FormValue("cmdSearch") // get possible search type.
-	search := req.FormValue("search")       // get possible title to seach for.
-
-	log.Infof(ctx, "Info %7d\tCmd: %-12s\tSearch: %s", info, searchCmd, search)
+	watchID := toInt(req, "cmdAdd")			// add to favorites / watch list.
+	// searchCmd := req.FormValue("cmdSearch") // get possible search type.
+	// search := req.FormValue("search")       // get possible title to seach for.
+	
+	webInformation.MovieTvGame.ID = 0		// no detail, search.
 	if info != 0 {
 		burl, _ := movieAPI.GetConfiguration(ctx)
 		tvi, _ := movieAPI.GetTvInfo(ctx, info, nil)
-		userInformation.MovieTvGame.ID = info
-		userInformation.MovieTvGame.Image = fmt.Sprintf("%s%s%s", burl.Images.BaseURL, burl.Images.PosterSizes[1], tvi.PosterPath)
-		userInformation.MovieTvGame.Description = tvi.Overview
-		userInformation.MovieTvGame.TVSeasons = tvi.NumberOfSeasons
-		userInformation.MovieTvGame.TVEpisodes = tvi.NumberOfEpisodes
+		webInformation.MovieTvGame.ID = info
+		webInformation.MovieTvGame.Image = fmt.Sprintf("%s%s%s", burl.Images.BaseURL, burl.Images.PosterSizes[1], tvi.PosterPath)
+		webInformation.MovieTvGame.Description = tvi.Overview
+		webInformation.MovieTvGame.TVSeasons = tvi.NumberOfSeasons
+		webInformation.MovieTvGame.TVEpisodes = tvi.NumberOfEpisodes
 		for _, gn := range tvi.Genres {
 			g = append(g, gn.Name)
 		}
-		userInformation.MovieTvGame.Genres = g
+		webInformation.MovieTvGame.Genres = g
+	}
+	if watchID != 0 && !duplicate(int32(watchID)) {
+		w := watch {int32(watchID), 1}
+		userInformation.Watched = append(userInformation.Watched, w)
+		WriteUserInformation(ctx, req)					// write added item to datastore / memcache
 	}
 }
 
 // movie information and search results.
 func moviePost(ctx context.Context, req *http.Request) {
-	info1 := toInt(req, "cmdID")            // get possible movie id to show detail.
-	info2 := toInt(req, "cmdUID")           // get possible movie id to show detail for upcomming movies.
-	searchCmd := req.FormValue("cmdSearch") // get possible search type.
-	search := req.FormValue("search")       // get possible title to seach for.
+	var g []string
 
-	log.Infof(ctx, "Info %7d\tInfoU %7d\tCmd: %-12s\tSearch: %s", info1, info2, searchCmd, search)
+	info := toInt(req, "cmdID")            // get possible movie id to show detail.
+	// searchCmd := req.FormValue("cmdSearch") // get possible search type.
+	// search := req.FormValue("search")       // get possible title to seach for.
+
+	webInformation.MovieTvGame.ID = 0		// no detail, search.
+	if info != 0 {
+		burl, _ := movieAPI.GetConfiguration(ctx)
+		mvi, _ := movieAPI.GetMovieInfo(ctx, info, nil)
+
+		webInformation.MovieTvGame.ID = info
+		webInformation.MovieTvGame.Description = mvi.Overview
+		if mvi.ReleaseDate != "" {
+			webInformation.MovieTvGame.ReleaseDate = mvi.ReleaseDate;
+		} else {
+			webInformation.MovieTvGame.ReleaseDate = "Future";
+		}
+		webInformation.MovieTvGame.Image = fmt.Sprintf("%s%s%s", burl.Images.BaseURL, burl.Images.PosterSizes[1], mvi.PosterPath)
+		for _, gn := range mvi.Genres {
+			g = append(g, gn.Name)
+		}
+		webInformation.MovieTvGame.Genres = g
+	}
+}
+
+func duplicate(id int32) bool {
+	var dup = false
+
+	for _, wid := range userInformation.Watched {
+		dup = wid.ID == id
+		if dup {
+			break;
+		}  
+	}
+	return dup			// if duplicate return true, otherwise return false.
 }

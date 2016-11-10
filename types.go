@@ -20,14 +20,16 @@ type topRatedPop struct {
 // definition for maovie / tv / game detail.
 type movieTvGameInformation struct {
 	ID                    int
-	Image, Description    string
+	Image, Description, ReleaseDate    string
 	TVSeasons, TVEpisodes int
 	Genres               []string
+	UID					int
 }
 
 // user's favorites / watch list.
-type watches struct {
+type watch struct {
 	ID int32
+	MTGType int			// 0 = movie, 1 = tv, 2 = game
 }
 
 // all upcomming movies list.
@@ -45,8 +47,22 @@ type userInformationType struct {
 	Timezone    int
 	DST         bool
 	LoggedIn    bool
+	Watched     []watch
+}
+
+// watched definition.
+type watchedType struct {
+	ID     int
+	Title  string
+	Rating float32
+	Movie, TV, Game bool		
+}
+
+// type definition to rendering information to the website.
+type webInformationType struct {
+	User	    *userInformationType
 	Counters    cdUpcomming
 	Top, Pop    topPopRated
-	Watched     []watches
 	MovieTvGame movieTvGameInformation
+	Watched     []watchedType 
 }

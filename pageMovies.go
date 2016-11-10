@@ -6,6 +6,7 @@ import (
 	"strconv"
 	"strings"
 	"time"
+	"fmt"
 
 	"golang.org/x/net/context"
 	"google.golang.org/appengine"
@@ -13,17 +14,19 @@ import (
 
 func pageMovies(res http.ResponseWriter, req *http.Request) {
 	ctx := appengine.NewContext(req)
-	userDefault()
 
 	if req.Method == "POST" {
 		moviePost(ctx, req)
+		if webInformation.MovieTvGame.ID != 0 {		// no detail, search.
+			http.Redirect(res, req, fmt.Sprintf("%s#moviemodal", req.URL.Path), http.StatusFound)
+		}
 	}
-	userInformation.Counters = upcomingReleases(ctx) // upcomming moview releases.
-	userInformation.Top = topRatedMovies(ctx)        // overall most popular movies.
-	userInformation.Pop = popularMovies(ctx)         // current most popular movies.
-	sort.Sort(sort.Reverse(userInformation.Pop))
-	sort.Sort(userInformation.Counters)
-	tpl.ExecuteTemplate(res, "movies.html", userInformation)
+	webInformation.Counters = upcomingReleases(ctx) // upcomming moview releases.
+	webInformation.Top = topRatedMovies(ctx)        // overall most popular movies.
+	webInformation.Pop = popularMovies(ctx)         // current most popular movies.
+	sort.Sort(sort.Reverse(webInformation.Pop))
+	sort.Sort(webInformation.Counters)
+	tpl.ExecuteTemplate(res, "movies.html", webInformation)
 }
 
 // get list of top rated movies.
@@ -63,6 +66,7 @@ func upcomingReleases(ctx context.Context) cdUpcomming {
 	pop, _ := movieAPI.GetMovieUpcoming(ctx, nil)
 
 	for _, val := range pop.Results {
+
 		rd, b := movieRelease(ctx, val.ID)
 		s := strings.Split(rd, "-")
 		if b {
@@ -73,6 +77,7 @@ func upcomingReleases(ctx context.Context) cdUpcomming {
 			movie.Day, _ = strconv.Atoi(s[2])
 			movie.Hours = 0
 			movie.Minutes = 0
+
 			cnts = append(cnts, movie)
 		}
 	}

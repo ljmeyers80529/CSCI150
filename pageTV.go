@@ -6,19 +6,22 @@ import (
 
 	"golang.org/x/net/context"
 	"google.golang.org/appengine"
+	"fmt"
 )
 
 func pageTV(res http.ResponseWriter, req *http.Request) {
 	ctx := appengine.NewContext(req)
-	userDefault()
 
 	if req.Method == "POST" {
 		tvPost(ctx, req)
+		if webInformation.MovieTvGame.ID != 0 {		// no detail, search.
+			http.Redirect(res, req, fmt.Sprintf("%s#tvmodal", req.URL.Path), http.StatusFound)
+		}
 	}
-	userInformation.Top = topRatedTV(ctx) // overall most popular movies.
-	userInformation.Pop = popularTV(ctx)  // current most popular movies.
-	sort.Sort(sort.Reverse(userInformation.Pop))
-	tpl.ExecuteTemplate(res, "tv.html", userInformation)
+	webInformation.Top = topRatedTV(ctx) // overall most popular movies.
+	webInformation.Pop = popularTV(ctx)  // current most popular movies.
+	sort.Sort(sort.Reverse(webInformation.Pop))
+	tpl.ExecuteTemplate(res, "tv.html", webInformation)
 }
 
 // get list of top rated movies.

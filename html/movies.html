@@ -74,10 +74,10 @@
                             <td>Remaining Time</td>
                         </thead>
                         <tbody>
-                            {{$tz := .Timezone}}
+                            {{$tz := .User.Timezone}}
                             {{range $idx, $data := .Counters}}
                             <tr>
-                                <td class="buttoncenter"><button type="submit" name="cmdUID" value="{{$data.ID}}">Info: {{printf "%06d" $data.ID}}</button></td>
+                                <td class="buttoncenter"><button type="submit" name="cmdID" value="{{$data.ID}}">Info: {{printf "%06d" $data.ID}}</button></td>
                                 <td>{{$data.Title}}</td>
                                 <td>
                                     <script type="application/javascript">
@@ -99,7 +99,17 @@
                         </tbody>
                     </table>
                 </div>
-
+                    <div id="moviemodal" class="modalDialog">
+                        <div>
+                            <a href="#close" title="Close" class="close">X</a>
+                            <img class="poster" src="{{.MovieTvGame.Image}}">
+                            <div class="movieDetailMsg">
+                                <h4>{{.MovieTvGame.Description}}</h4>
+                                <h4>Genres:{{range $idx, $g := .MovieTvGame.Genres}}&nbsp{{$g}}&nbsp{{end}}</h4>
+                                <h4>Release Date: {{.MovieTvGame.ReleaseDate}}
+                            </div>
+                       </div>
+                    </div>
             </div>
         </form>
     </center>
