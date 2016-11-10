@@ -17,11 +17,7 @@ func pageMovies(res http.ResponseWriter, req *http.Request) {
 
 	if req.Method == "POST" {
 		moviePost(ctx, req)
-<<<<<<< HEAD
 		if webInformation.MovieTvGame.ID != 0 {		// no detail, search.
-=======
-		if userInformation.MovieTvGame.ID != 0 {		// no detail, search.
->>>>>>> 0404beff3db916d894bec4c38a51eabb0b4f55f3
 			http.Redirect(res, req, fmt.Sprintf("%s#moviemodal", req.URL.Path), http.StatusFound)
 		}
 	}
