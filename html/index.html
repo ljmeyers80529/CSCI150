@@ -6,6 +6,7 @@
     <link rel="stylesheet" type="text/css" href="../css/main.css">
     <link rel="stylesheet" type="text/css" href="../css/movies.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../js/countdown.js" type="text/javascript"></script>
     <style>
         #homepage {
             visibility: hidden;
@@ -41,8 +42,10 @@
                         <td>M</td>
                         <td>T</td>
                         <td>G</td>
+                        <td>Release</td>
                     </thead>
                     <tbody>
+                        {{$tz := .User.Timezone}}
                         {{range $idx, $data := .Watched}}
                         <tr>
                             <td class="buttoncenter"><button class="btnInfoAdd" type="submit" name="cmdID" value="{{$data.ID}}">Info</button></td>
@@ -51,6 +54,25 @@
                             <td><input class="buttoncenter" type="checkbox" readonly {{if $data.Movie}}checked{{end}}></td>
                             <td><input class="buttoncenter" type="checkbox" readonly {{if $data.TV}}checked{{end}}></td>
                             <td><input class="buttoncenter" type="checkbox" readonly {{if $data.Game}}checked{{end}}></td>
+                            <td>
+                                {{if $data.Future}}
+                                    <script type="application/javascript">
+                                    var clk = new Countdown({year: {{$data.Year}},
+	            					month: {{$data.Month}},
+		    	        			day: {{$data.Day}},
+			    		        	hour: {{$data.Hours}},
+				    		        minute: {{$data.Minutes}},
+					    	        timezone: {{$tz}},
+    						        rangeHi:"day",
+	    					        width:150, 
+ 		    				        height:30,  
+				    		        style: "flip"
+    			       			    });
+                                    </script>
+                                {{else}}
+                                {{$data.Release}}
+                                {{end}}
+                            </td>
                         </tr>
                         {{end}}
                     </tbody>
@@ -66,6 +88,17 @@
                                 <h4>{{.MovieTvGame.Description}}</h4>
                                 <h4>{{.MovieTvGame.TVEpisodes}} Episodes over {{.MovieTvGame.TVSeasons}} Seasons.</h4>
                                 <h4>Genres:{{range $idx, $g := .MovieTvGame.Genres}}&nbsp{{$g}}&nbsp{{end}}</h4>
+                            </div>
+                       </div>
+                    </div>
+                    <div id="moviemodal" class="modalDialog">
+                        <div>
+                            <a href="#close" title="Close" class="close">X</a>
+                            <img class="poster" src="{{.MovieTvGame.Image}}">
+                            <div class="movieDetailMsg">
+                                <h4>{{.MovieTvGame.Description}}</h4>
+                                <h4>Genres:{{range $idx, $g := .MovieTvGame.Genres}}&nbsp{{$g}}&nbsp{{end}}</h4>
+                                <h4>Release Date: {{.MovieTvGame.ReleaseDate}}
                             </div>
                        </div>
                     </div>

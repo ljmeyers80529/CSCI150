@@ -33,6 +33,7 @@ func checkUserLogin(res http.ResponseWriter, req *http.Request) bool {
 	if uuidKey = SearchUser(ctx, user); uuidKey != "" {
 		ReadUserInformation(ctx, req, uuidKey)
 		userInformation.LoggedIn = userInformation.Password == pass
+		updateCookie(res, req)
 	}
 	return userInformation.LoggedIn
 }

@@ -3,48 +3,35 @@ package csci150
 import (
 	"fmt"
 	"net/http"
+	"strings"
 
 	"golang.org/x/net/context"
 	"google.golang.org/appengine"
+	"strconv"
 )
 
 // main (top) web page.
 func pageMain(res http.ResponseWriter, req *http.Request) {
 	ctx := appengine.NewContext(req)
+	readCookie(res, req)						// maintain user login / out state.apikey
 
 	if req.Method == "POST" {
 		infoID := toInt(req, "cmdID")
 		if infoID > 0 {
 			switch itemType(infoID) {
 			case 0:
+				moviePost(ctx, res, req)
+				if webInformation.MovieTvGame.ID != 0 {		// no detail, search.
+					http.Redirect(res, req, fmt.Sprintf("%s#moviemodal", req.URL.Path), http.StatusFound)
+				}
 			case 1:
-				tvPost(ctx, req)
+				tvPost(ctx, res, req)
 				if webInformation.MovieTvGame.ID != 0 { // no detail, search.
 					http.Redirect(res, req, fmt.Sprintf("%s#tvmodal", req.URL.Path), http.StatusFound)
 				}
 			case 2:
 			}
 		}
-		// 	fn := req.FormValue("cmdbutton")
-		// 	switch fn {
-		// 	case "UserLogin": // display user login dialog box.
-		// 		http.Redirect(res, req, "/login", http.StatusFound)
-		// 		// case "Register": // display user registration dialog box.
-		// 		// 	http.Redirect(res, req, fmt.Sprintf("%s#openRegistration", req.URL.Path), http.StatusFound)
-		// 		// case "OK": // new user registration.
-		// 		// 	if WriteNewUserInformation(res, req) {
-		// 		// 		http.Redirect(res, req, fmt.Sprintf("%s#openLogin", req.URL.Path), http.StatusFound)
-		// 		// 	} else {
-		// 		// 		http.Redirect(res, req, fmt.Sprintf("%s#openRegistration", req.URL.Path), http.StatusFound)
-		// 		// 	}
-		// 		// case "Login": // process user login.
-		// 		// 	if checkUserLogin(res, req) {
-
-		// 		// 		http.Redirect(res, req, "/counters", http.StatusFound) // change, /counters for testing only.
-		// 		// 	} else {
-		// 		// 		http.Redirect(res, req, fmt.Sprintf("%s#openLogin", req.URL.Path), http.StatusFound)
-		// 		// 	}
-		// 	}
 	}
 	popWatch(ctx)
 	tpl.ExecuteTemplate(res, "index.html", webInformation)
@@ -62,11 +49,28 @@ func popWatch(ctx context.Context) {
 		wi.Game = false
 		switch wat.MTGType {
 		case 0:
+			mvi, _ := movieAPI.GetMovieInfo(ctx, wi.ID, nil)
+			wi.Movie = true
+			wi.Title = mvi.Title
+			wi.Rating = mvi.VoteAverage
+			wi.Release = mvi.ReleaseDate
+			dr, ok := movieRelease(ctx, wi.ID)
+			wi.Future = ok
+			if wi.Future {
+				s := strings.Split(dr, "-")
+				wi.Year, _ = strconv.Atoi(s[0])
+				wi.Month, _ = strconv.Atoi(s[1])
+				wi.Day, _ = strconv.Atoi(s[2])
+				wi.Hours = 0
+				wi.Minutes = 0
+			}
 		case 1:
 			tvi, _ := movieAPI.GetTvInfo(ctx, wi.ID, nil)
 			wi.TV = true
+			wi.Future = false
 			wi.Title = tvi.Name
 			wi.Rating = tvi.VoteAverage
+			wi.Release = ""
 		case 2:
 		}
 		wis = append(wis, wi)

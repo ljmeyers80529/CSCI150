@@ -199,7 +199,7 @@ func setUserDefault() {
 }
 
 // tv information and search results.
-func tvPost(ctx context.Context, req *http.Request) {
+func tvPost(ctx context.Context, res http.ResponseWriter, req *http.Request) {
 	var g []string
 
 	info := toInt(req, "cmdID")             // get possible movie id to show detail.
@@ -221,18 +221,20 @@ func tvPost(ctx context.Context, req *http.Request) {
 		}
 		webInformation.MovieTvGame.Genres = g
 	}
-	if watchID != 0 && !duplicate(int32(watchID)) {
+	if watchID != 0 && !duplicate(int32(watchID), 1) {
 		w := watch {int32(watchID), 1}
 		userInformation.Watched = append(userInformation.Watched, w)
+		updateCookie(res, req)
 		WriteUserInformation(ctx, req)					// write added item to datastore / memcache
 	}
 }
 
 // movie information and search results.
-func moviePost(ctx context.Context, req *http.Request) {
+func moviePost(ctx context.Context, res http.ResponseWriter, req *http.Request) {
 	var g []string
 
 	info := toInt(req, "cmdID")            // get possible movie id to show detail.
+	watchID := toInt(req, "cmdAdd")			// add to favorites / watch list.
 	// searchCmd := req.FormValue("cmdSearch") // get possible search type.
 	// search := req.FormValue("search")       // get possible title to seach for.
 
@@ -254,13 +256,19 @@ func moviePost(ctx context.Context, req *http.Request) {
 		}
 		webInformation.MovieTvGame.Genres = g
 	}
+	if watchID != 0 && !duplicate(int32(watchID), 0) {
+		w := watch {int32(watchID), 0}
+		userInformation.Watched = append(userInformation.Watched, w)
+		updateCookie(res, req)
+		WriteUserInformation(ctx, req)					// write added item to datastore / memcache
+	}
 }
 
-func duplicate(id int32) bool {
+func duplicate(id int32, mtgType int) bool {
 	var dup = false
 
 	for _, wid := range userInformation.Watched {
-		dup = wid.ID == id
+		dup = (wid.ID == id) && (wid.MTGType == mtgType)
 		if dup {
 			break;
 		}  

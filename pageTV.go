@@ -11,9 +11,10 @@ import (
 
 func pageTV(res http.ResponseWriter, req *http.Request) {
 	ctx := appengine.NewContext(req)
+	readCookie(res, req)						// maintain user login / out state.apikey
 
 	if req.Method == "POST" {
-		tvPost(ctx, req)
+		tvPost(ctx, res, req)
 		if webInformation.MovieTvGame.ID != 0 {		// no detail, search.
 			http.Redirect(res, req, fmt.Sprintf("%s#tvmodal", req.URL.Path), http.StatusFound)
 		}

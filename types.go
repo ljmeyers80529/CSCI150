@@ -55,7 +55,9 @@ type watchedType struct {
 	ID     int
 	Title  string
 	Rating float32
-	Movie, TV, Game bool		
+	Movie, TV, Game, Future bool
+	Release  string
+	Year, Month, Day, Hours, Minutes int		
 }
 
 // type definition to rendering information to the website.
