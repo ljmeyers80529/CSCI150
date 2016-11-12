@@ -5,23 +5,26 @@ import (
 	"net/http"
 	"strings"
 
+	"strconv"
+
 	"golang.org/x/net/context"
 	"google.golang.org/appengine"
-	"strconv"
+	"google.golang.org/appengine/log"
 )
 
 // main (top) web page.
 func pageMain(res http.ResponseWriter, req *http.Request) {
 	ctx := appengine.NewContext(req)
-	readCookie(res, req)						// maintain user login / out state.apikey
+	readCookie(res, req) // maintain user login / out state.apikey
 
 	if req.Method == "POST" {
 		infoID := toInt(req, "cmdID")
+		removeID := toInt(req, "cmdRM")
 		if infoID > 0 {
 			switch itemType(infoID) {
 			case 0:
 				moviePost(ctx, res, req)
-				if webInformation.MovieTvGame.ID != 0 {		// no detail, search.
+				if webInformation.MovieTvGame.ID != 0 { // no detail, search.
 					http.Redirect(res, req, fmt.Sprintf("%s#moviemodal", req.URL.Path), http.StatusFound)
 				}
 			case 1:
@@ -31,6 +34,9 @@ func pageMain(res http.ResponseWriter, req *http.Request) {
 				}
 			case 2:
 			}
+		}
+		if removeID > 0 {
+			log.Infof(ctx, "ID: %8d\tLocation: %d\n", removeID, removeItem(removeID))
 		}
 	}
 	popWatch(ctx)
@@ -93,4 +99,17 @@ func itemType(ID int) int {
 		}
 	}
 	return t
+}
+
+// remove an item from the watch list.
+func removeItem(ID int) int {
+	var location = 0
+
+	for _, val := range webInformation.Watched {
+		if val.ID == ID {
+			break
+		}
+		location++
+	}
+	return location
 }

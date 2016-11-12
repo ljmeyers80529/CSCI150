@@ -68,3 +68,7 @@ button {
 .btnInfoAdd {
     width: 45px;
 }
+
+.btnRemove {
+    width: 65px;
+}

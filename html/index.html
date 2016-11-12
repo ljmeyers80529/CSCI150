@@ -28,12 +28,13 @@
            <div id="mass">
             <center>
                     <div class="SearchBar">
-                        <button name="cmdSearch" value="all">Search</button>
                         <input style="width: 300px" id="s" type="text" name="search" placeholder="Search...">
+                        <button name="cmdSearch" value="all">Search</button>
                     </div>
             </center>
             {{if .User.LoggedIn}}
             <center>
+                {{if .Watched}}
                 <table style="font-size: 1.25rem">
                     <thead style="font-size: 1rem">
                         <td>Detail</td>
@@ -42,7 +43,8 @@
                         <td>M</td>
                         <td>T</td>
                         <td>G</td>
-                        <td>Release</td>
+                        <td style="width: 100px">Release</td>
+                        <td></td>
                     </thead>
                     <tbody>
                         {{$tz := .User.Timezone}}
@@ -51,9 +53,9 @@
                             <td class="buttoncenter"><button class="btnInfoAdd" type="submit" name="cmdID" value="{{$data.ID}}">Info</button></td>
                             <td>{{$data.Title}}</td>
                             <td>{{$data.Rating}}</td>
-                            <td><input class="buttoncenter" type="checkbox" readonly {{if $data.Movie}}checked{{end}}></td>
-                            <td><input class="buttoncenter" type="checkbox" readonly {{if $data.TV}}checked{{end}}></td>
-                            <td><input class="buttoncenter" type="checkbox" readonly {{if $data.Game}}checked{{end}}></td>
+                            <td><input class="buttoncenter" type="checkbox" disabled {{if $data.Movie}}checked{{end}}></td>
+                            <td><input class="buttoncenter" type="checkbox" disabled {{if $data.TV}}checked{{end}}></td>
+                            <td><input class="buttoncenter" type="checkbox" disabled {{if $data.Game}}checked{{end}}></td>
                             <td>
                                 {{if $data.Future}}
                                     <script type="application/javascript">
@@ -73,10 +75,12 @@
                                 {{$data.Release}}
                                 {{end}}
                             </td>
+                            <td class="buttoncenter"><button class="btnRemove" type="submit" name="cmdRM" value="{{or $idx 4096}}">Remove</button></td>
                         </tr>
                         {{end}}
                     </tbody>
                 </table>
+                {{end}}
             </center>
             {{end}}
     </div>
@@ -85,9 +89,9 @@
                             <a href="#close" title="Close" class="close">X</a>
                             <img class="poster" src="{{.MovieTvGame.Image}}">
                             <div class="movieDetailMsg">
-                                <h4>{{.MovieTvGame.Description}}</h4>
-                                <h4>{{.MovieTvGame.TVEpisodes}} Episodes over {{.MovieTvGame.TVSeasons}} Seasons.</h4>
-                                <h4>Genres:{{range $idx, $g := .MovieTvGame.Genres}}&nbsp{{$g}}&nbsp{{end}}</h4>
+                                <h6>{{.MovieTvGame.Description}}</h6>
+                                <h6>{{.MovieTvGame.TVEpisodes}} Episodes over {{.MovieTvGame.TVSeasons}} Seasons.</h6>
+                                <h6>Genres:{{range $idx, $g := .MovieTvGame.Genres}}&nbsp{{$g}}&nbsp{{end}}</h6>
                             </div>
                        </div>
                     </div>
@@ -96,9 +100,9 @@
                             <a href="#close" title="Close" class="close">X</a>
                             <img class="poster" src="{{.MovieTvGame.Image}}">
                             <div class="movieDetailMsg">
-                                <h4>{{.MovieTvGame.Description}}</h4>
-                                <h4>Genres:{{range $idx, $g := .MovieTvGame.Genres}}&nbsp{{$g}}&nbsp{{end}}</h4>
-                                <h4>Release Date: {{.MovieTvGame.ReleaseDate}}
+                                <h6>{{.MovieTvGame.Description}}</h6>
+                                <h6>Genres:{{range $idx, $g := .MovieTvGame.Genres}}&nbsp{{$g}}&nbsp{{end}}</h6>
+                                <h6>Release Date: {{.MovieTvGame.ReleaseDate}}</h6>
                             </div>
                        </div>
                     </div>
