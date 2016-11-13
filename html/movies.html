@@ -36,7 +36,7 @@
                             <tbody>
                                 {{range $idx, $data := .Top}}
                                 <tr>
-                                    <td class="buttoncenter"><button type="submit" name="cmdID" value="{{$data.ID}}">Info: {{printf "%06d" $data.ID}}</button></td>
+                                    <td class="buttoncenter"><button class="btnInfoAdd" type="submit" name="cmdID" value="{{$data.ID}}">Info</button></td>
                                     <td>{{$data.Title}}</td>
                                     <td>{{$data.Rating}}</td>
                                     {{if $log}}<td class="buttoncenter"><button class="btnInfoAdd" type="submit" name="cmdAdd" value="{{$data.ID}}">Add</button></td>{{end}}
@@ -58,7 +58,7 @@
                             <tbody>
                                 {{range $idx, $data := .Pop}}
                                 <tr>
-                                    <td class="buttoncenter"><button type="submit" name="cmdID" value="{{$data.ID}}">Info: {{printf "%06d" $data.ID}}</button></td>
+                                    <td class="buttoncenter"><button class="btnInfoAdd" type="submit" name="cmdID" value="{{$data.ID}}">Info</button></td>
                                     <td>{{$data.Title}}</td>
                                     <td>{{$data.Rating}}</td>
                                     {{if $log}}<td class="buttoncenter"><button class="btnInfoAdd" type="submit" name="cmdAdd" value="{{$data.ID}}">Add</button></td>{{end}}
@@ -83,7 +83,7 @@
                             {{$tz := .User.Timezone}}
                             {{range $idx, $data := .Counters}}
                             <tr>
-                                <td class="buttoncenter"><button type="submit" name="cmdID" value="{{$data.ID}}">Info: {{printf "%06d" $data.ID}}</button></td>
+                                <td class="buttoncenter"><button class="btnInfoAdd" type="submit" name="cmdID" value="{{$data.ID}}">Info</button></td>
                                 <td>{{$data.Title}}</td>
                                 <td>
                                     <script type="application/javascript">
@@ -106,14 +106,16 @@
                         </tbody>
                     </table>
                 </div>
+                
                     <div id="moviemodal" class="modalDialog">
                         <div>
                             <a href="#close" title="Close" class="close">X</a>
                             <img class="poster" src="{{.MovieTvGame.Image}}">
                             <div class="movieDetailMsg">
                                 <h6>{{.MovieTvGame.Description}}</h6>
-                                <h6>Genres:{{range $idx, $g := .MovieTvGame.Genres}}&nbsp{{$g}}&nbsp{{end}}</h6>
                                 <h6>Release Date: {{.MovieTvGame.ReleaseDate}}</h6>
+                                <h6>XXXXXXX</h6>
+                                <h6>Genres:{{range $idx, $g := .MovieTvGame.Genres}}&nbsp{{$g}}&nbsp{{end}}</h6>
                             </div>
                        </div>
                     </div>
