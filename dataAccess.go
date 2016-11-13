@@ -239,8 +239,6 @@ func moviePost(ctx context.Context, res http.ResponseWriter, req *http.Request) 
 	searchCmd := req.FormValue("cmdSearch") // get possible search type.
 	search := req.FormValue("search")       // get possible title to seach for.
 
-	log.Infof(ctx, "Cmd: %v\t\tSrch:%v\n\n", searchCmd, search)
-
 	webInformation.MovieTvGame.ID = 0 // no detail, search.
 	if info != 0 {
 		burl, _ := movieAPI.GetConfiguration(ctx)
@@ -267,8 +265,8 @@ func moviePost(ctx context.Context, res http.ResponseWriter, req *http.Request) 
 		updateCookie(res, req)
 		WriteUserInformation(ctx, req) // write added item to datastore / memcache
 	}
-	if searchCmd != "" {
-		http.Redirect(res, req, fmt.Sprintf("/results?cmd=%s&search=%s", searchCmd, search), http.StatusFound)
+	if searchCmd == "movies_tv" {
+		http.Redirect(res, req, fmt.Sprintf("/results?search=%s", search), http.StatusFound)
 	}
 }
 

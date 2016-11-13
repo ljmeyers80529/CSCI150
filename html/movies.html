@@ -24,53 +24,6 @@
 
                 {{$log := .User.LoggedIn}}
 <<<<<<< HEAD
-                <div class="movieTop">
-                    <div class="movieTab">
-                        <h2>Top Rated</h2>
-                        <table style="font-size: 1.25rem">
-                            <thead>
-                                <td></td>
-                                <td>Movie Title</td>
-                                <td>Rating</td>
-                                {{if $log}}<td style="width: 60px">Watch / Fav</td>{{end}}
-                            </thead>
-                            <tbody>
-                                {{range $idx, $data := .Top}}
-                                <tr>
-                                    <td class="buttoncenter"><button class="btnInfoAdd" type="submit" name="cmdID" value="{{$data.ID}}">Info</button></td>
-                                    <td>{{$data.Title}}</td>
-                                    <td>{{$data.Rating}}</td>
-                                    {{if $log}}<td class="buttoncenter"><button class="btnInfoAdd" type="submit" name="cmdAdd" value="{{$data.ID}}">Add</button></td>{{end}}
-                                </tr>
-                                {{end}}
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <div class="movieTab">
-                        <h2>Popular</h2>
-                        <table style="font-size: 1.25rem">
-                            <thead>
-                                <td></td>
-                                <td>Movie Title</td>
-                                <td>Rating</td>
-                                {{if $log}}<td style="width: 60px">Watch / Fav</td>{{end}}
-                            </thead>
-                            <tbody>
-                                {{range $idx, $data := .Pop}}
-                                <tr>
-                                    <td class="buttoncenter"><button class="btnInfoAdd" type="submit" name="cmdID" value="{{$data.ID}}">Info</button></td>
-                                    <td>{{$data.Title}}</td>
-                                    <td>{{$data.Rating}}</td>
-                                    {{if $log}}<td class="buttoncenter"><button class="btnInfoAdd" type="submit" name="cmdAdd" value="{{$data.ID}}">Add</button></td>{{end}}
-                                </tr>
-                                {{end}}
-                            </tbody>
-                        </table>
-                    </div>
-
-                </div>
-
 =======
 >>>>>>> ac5547d391827d5dccce532514848de945b34a90
                 <div>
@@ -113,18 +66,6 @@
                     </table>
                 </div>
                 
-                    <div id="moviemodal" class="modalDialog">
-                        <div>
-                            <a href="#close" title="Close" class="close">X</a>
-                            <img class="poster" src="{{.MovieTvGame.Image}}">
-                            <div class="movieDetailMsg">
-                                <h6>{{.MovieTvGame.Description}}</h6>
-                                <h6>Release Date: {{.MovieTvGame.ReleaseDate}}</h6>
-                                <h6>XXXXXXX</h6>
-                                <h6>Genres:{{range $idx, $g := .MovieTvGame.Genres}}&nbsp{{$g}}&nbsp{{end}}</h6>
-                            </div>
-                       </div>
-                    </div>
             </div>
                 <div class="movieTop">
                     <div class="movieTab">
@@ -172,6 +113,18 @@
                         </table>
                     </div>
                 </div>          
+                    <div id="moviemodal" class="modalDialog">
+                        <div>
+                            <a href="#close" title="Close" class="close">X</a>
+                            <img class="poster" src="{{.MovieTvGame.Image}}">
+                            <div class="movieDetailMsg">
+                                <h6>{{.MovieTvGame.Description}}</h6>
+                                <h6>Release Date: {{.MovieTvGame.ReleaseDate}}</h6>
+                                <h6>XXXXXXX</h6>
+                                <h6>Genres:{{range $idx, $g := .MovieTvGame.Genres}}&nbsp{{$g}}&nbsp{{end}}</h6>
+                            </div>
+                       </div>
+                    </div>
         </form>
     </center>
 
