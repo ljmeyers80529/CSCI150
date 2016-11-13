@@ -38,6 +38,7 @@ func pageMain(res http.ResponseWriter, req *http.Request) {
 		if removeID > 0 {
 			log.Infof(ctx, "ID: %8d\tLocation: %d\n", removeID, removeItem(removeID))
 		}
+		executeSearch(res, req)
 	}
 	popWatch(ctx)
 	tpl.ExecuteTemplate(res, "index.html", webInformation)

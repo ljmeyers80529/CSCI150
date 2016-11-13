@@ -23,9 +23,6 @@
                 </div>
 
                 {{$log := .User.LoggedIn}}
-<<<<<<< HEAD
-=======
->>>>>>> ac5547d391827d5dccce532514848de945b34a90
                 <div>
                   	
                   	<h2 class = "title1">Upcoming Movies</h2>
@@ -80,7 +77,7 @@
                             <tbody>
                                 {{range $idx, $data := .Top}}
                                 <tr>
-                                    <td class="buttoncenter"><button type="submit" name="cmdID" value="{{$data.ID}}">Info: {{printf "%06d" $data.ID}}</button></td>
+                                    <td class="buttoncenter"><button class="btnInfoAdd" type="submit" name="cmdID" value="{{$data.ID}}">Info</button></td>
                                     <td>{{$data.Title}}</td>
                                     <td>{{$data.Rating}}</td>
                                     {{if $log}}<td class="buttoncenter"><button class="btnInfoAdd" type="submit" name="cmdAdd" value="{{$data.ID}}">Add</button></td>{{end}}
@@ -103,7 +100,7 @@
                             <tbody>
                                 {{range $idx, $data := .Pop}}
                                 <tr>
-                                    <td class="buttoncenter"><button type="submit" name="cmdID" value="{{$data.ID}}">Info: {{printf "%06d" $data.ID}}</button></td>
+                                    <td class="buttoncenter"><button class="btnInfoAdd" type="submit" name="cmdID" value="{{$data.ID}}">Info</button></td>
                                     <td>{{$data.Title}}</td>
                                     <td>{{$data.Rating}}</td>
                                     {{if $log}}<td class="buttoncenter"><button class="btnInfoAdd" type="submit" name="cmdAdd" value="{{$data.ID}}">Add</button></td>{{end}}

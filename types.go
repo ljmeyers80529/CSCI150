@@ -24,6 +24,7 @@ type movieTvGameInformation struct {
 	TVSeasons, TVEpisodes           int
 	Genres                          []string
 	UID                             int
+	Search                          string
 	Youtube                         string
 }
 

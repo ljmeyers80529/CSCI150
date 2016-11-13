@@ -4,26 +4,25 @@ import (
 	// "fmt"
 	"fmt"
 	"net/http"
-	// "sort"
-	// "strconv"
-	// "strings"
-	// "time"
 
 	"golang.org/x/net/context"
 	"google.golang.org/appengine"
+	// "google.golang.org/appengine/log"
 )
 
 func pageResults(res http.ResponseWriter, req *http.Request) {
 	ctx := appengine.NewContext(req)
 	readCookie(res, req) // maintain user login / out state.apikey
 
-	search := req.FormValue("search") // get possible title to seach for.
+	search := req.FormValue("srch") // get possible title to seach for.
+	webInformation.MovieTvGame.Search = search
 
 	if req.Method == "POST" {
-		moviePost(ctx, res, req)
+		movieTvPost(ctx, res, req)
 		if webInformation.MovieTvGame.ID != 0 { // no detail, search.
-			http.Redirect(res, req, fmt.Sprintf("%s#moviemodal", req.URL.Path), http.StatusFound)
+			http.Redirect(res, req, fmt.Sprintf("%s?srch=%s#moviemodal", req.URL.Path, search), http.StatusFound)
 		}
+
 	}
 
 	webInformation.Top = searchMovies(ctx, search) // search for movies.

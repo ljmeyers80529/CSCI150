@@ -14,6 +14,12 @@
 
         <form method="POST">
                 {{$log := .User.LoggedIn}}
+                <div class="SearchBar">
+                    <input id="s" type="text" name="search" placeholder="Search...">
+                    <button class="specify" name="cmdSearch" value="movies_tv">Movies & TV</button>
+                    <button class="specify" name="cmdSearch" value="games">Games</button>
+                </div>
+
                 <div class="movieTop">
                     <div class="movieTab">
                  			<h2 class= "title2">Movie</h2>
@@ -27,10 +33,10 @@
                             <tbody>
                                 {{range $idx, $data := .Top}}
                                 <tr>
-                                    <td class="buttoncenter"><button type="submit" name="cmdID" value="{{$data.ID}}">Info</button></td>
+                                    <td class="buttoncenter"><button class="btnInfoAdd" type="submit" name="cmdMID" value="{{$data.ID}}">Info</button></td>
                                     <td>{{$data.Title}}</td>
                                     <td>{{$data.Rating}}</td>
-                                    {{if $log}}<td class="buttoncenter"><button class="btnInfoAdd" type="submit" name="cmdAdd" value="{{$data.ID}}">Add</button></td>{{end}}
+                                    {{if $log}}<td class="buttoncenter"><button class="btnInfoAdd" type="submit" name="cmdMAdd" value="{{$data.ID}}">Add</button></td>{{end}}
                                 </tr>
                                 {{end}}
                             </tbody>
@@ -50,10 +56,10 @@
                             <tbody>
                                 {{range $idx, $data := .Pop}}
                                 <tr>
-                                    <td class="buttoncenter"><button type="submit" name="cmdID" value="{{$data.ID}}">Info</button></td>
+                                    <td class="buttoncenter"><button class="btnInfoAdd" type="submit" name="cmdTID" value="{{$data.ID}}">Info</button></td>
                                     <td>{{$data.Title}}</td>
                                     <td>{{$data.Rating}}</td>
-                                    {{if $log}}<td class="buttoncenter"><button class="btnInfoAdd" type="submit" name="cmdAdd" value="{{$data.ID}}">Add</button></td>{{end}}
+                                    {{if $log}}<td class="buttoncenter"><button class="btnInfoAdd" type="submit" name="cmdTAdd" value="{{$data.ID}}">Add</button></td>{{end}}
                                 </tr>
                                 {{end}}
                             </tbody>
@@ -63,7 +69,7 @@
 
                     <div id="moviemodal" class="modalDialog">
                         <div>
-                            <a href="#close" title="Close" class="close">X</a>
+                            <a href="?srch={{.MovieTvGame.Search}}#close" title="Close" class="close">X</a>
                             <img class="poster" src="{{.MovieTvGame.Image}}">
                             <div class="movieDetailMsg">
                                 <h6>{{.MovieTvGame.Description}}</h6>
@@ -76,7 +82,7 @@
 
                     <div id="tvmodal" class="modalDialog">
                         <div>
-                            <a href="#close" title="Close" class="close">X</a>
+                            <a href="?srch={{.MovieTvGame.Search}}#close" title="Close" class="close">X</a>
                             <img class="poster" src="{{.MovieTvGame.Image}}">
                             <div class="movieDetailMsg">
                                 <h6>{{.MovieTvGame.Description}}</h6>
@@ -85,7 +91,6 @@
                             </div>
                        </div>
                     </div>
-
         </form>
     </center>
 </body>
