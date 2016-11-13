@@ -1,6 +1,18 @@
 
 /* Create three columns of equal width */
 
+.title1{
+    padding: 0;
+    margin: 0;
+}
+.title2{
+    padding: 0;
+    margin: 0;
+}
+.title3{
+    padding: 0;
+    margin: 0;
+}
 form {
     display: flex;
     flex-direction: column;

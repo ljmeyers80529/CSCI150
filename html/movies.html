@@ -11,9 +11,9 @@
 
 <body>
     {{template "header" .}}
-
-    <img src="../img/diningPhilo.svg" id="huns" width="200" height="200">
     <center>
+    <img src="../img/diningPhilo.svg" id="huns" width="200" height="200">
+
         <form method="POST">
             <div id="mass">
                 <div class="SearchBar">
@@ -23,6 +23,7 @@
                 </div>
 
                 {{$log := .User.LoggedIn}}
+<<<<<<< HEAD
                 <div class="movieTop">
                     <div class="movieTab">
                         <h2>Top Rated</h2>
@@ -70,11 +71,16 @@
 
                 </div>
 
+=======
+>>>>>>> ac5547d391827d5dccce532514848de945b34a90
                 <div>
-                    <h2>Upcoming Movies</h2>
+                  	
+                  	<h2 class = "title1">Upcoming Movies</h2>
                     <table style="font-size: 1.25rem">
+
                         <thead>
                             <td></td>
+                            
                             <td>Movie Title</td>
                             <td>Remaining Time</td>
                             {{if $log}}<td style="width: 60px">Watch / Fav</td>{{end}}
@@ -94,8 +100,8 @@
 				    		 minute: {{$data.Minutes}},
 					    	 timezone: {{$tz}},
     						 rangeHi:"day",
-	    					 width:150, 
- 		    				 height:30,  
+	    					 width:150,
+ 		    				 height:30,
 				    		 style: "flip"
 			    			 });
                     </script>
@@ -120,6 +126,52 @@
                        </div>
                     </div>
             </div>
+                <div class="movieTop">
+                    <div class="movieTab">
+                 			<h2 class= "title2">Top Rated</h2>
+                        <table style="font-size: 1.25rem">
+                            <thead>
+                                <td></td>
+                                <td>Movie Title</td>
+                                <td>Rating</td>
+                                {{if $log}}<td style="width: 60px">Watch / Fav</td>{{end}}
+                            </thead>
+                            <tbody>
+                                {{range $idx, $data := .Top}}
+                                <tr>
+                                    <td class="buttoncenter"><button type="submit" name="cmdID" value="{{$data.ID}}">Info: {{printf "%06d" $data.ID}}</button></td>
+                                    <td>{{$data.Title}}</td>
+                                    <td>{{$data.Rating}}</td>
+                                    {{if $log}}<td class="buttoncenter"><button class="btnInfoAdd" type="submit" name="cmdAdd" value="{{$data.ID}}">Add</button></td>{{end}}
+                                </tr>
+                                {{end}}
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="movieTab">
+                        
+                         <h2 class = "title3">Popular</h2>
+                        <table style="font-size: 1.25rem">
+                            <thead>
+                                <td></td>
+                                <td>Movie Title</td>
+                                <td>Rating</td>
+                                {{if $log}}<td style="width: 60px">Watch / Fav</td>{{end}}
+                            </thead>
+                            <tbody>
+                                {{range $idx, $data := .Pop}}
+                                <tr>
+                                    <td class="buttoncenter"><button type="submit" name="cmdID" value="{{$data.ID}}">Info: {{printf "%06d" $data.ID}}</button></td>
+                                    <td>{{$data.Title}}</td>
+                                    <td>{{$data.Rating}}</td>
+                                    {{if $log}}<td class="buttoncenter"><button class="btnInfoAdd" type="submit" name="cmdAdd" value="{{$data.ID}}">Add</button></td>{{end}}
+                                </tr>
+                                {{end}}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>          
         </form>
     </center>
 
