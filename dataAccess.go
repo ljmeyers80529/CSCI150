@@ -16,6 +16,7 @@ import (
 	"google.golang.org/appengine/datastore"
 	"google.golang.org/appengine/log"
 	// "google.golang.org/appengine/log"
+	"github.com/Henry-Sarabia/igdbgo"
 	"google.golang.org/appengine/memcache"
 )
 
@@ -277,6 +278,33 @@ func movieTvPost(ctx context.Context, res http.ResponseWriter, req *http.Request
 		tvInfo(ctx, infoID)
 	}
 	executeSearch(res, req)
+}
+
+// gamePost retrieves and formats individual game information
+func gamePost(ctx context.Context, req *http.Request) {
+	i := req.FormValue("cmdID")
+	info := toInt(req, "cmdID")
+
+	webInformation.MovieTvGame.ID = 0
+	if info != 0 {
+		gm, err := igdbgo.GetGames(ctx, "", 1, 0, 0, i)
+		if err != nil {
+			return
+		}
+		game := gm[0]
+
+		webInformation.MovieTvGame.ID = info
+		webInformation.MovieTvGame.Description = game.Summary
+		if game.FirstRelease != 0 {
+			y, m, d := game.GetDate()
+			date := strconv.Itoa(m) + "-" + strconv.Itoa(d) + "-" + strconv.Itoa(y)
+			webInformation.MovieTvGame.ReleaseDate = date
+		} else {
+			webInformation.MovieTvGame.ReleaseDate = "Future"
+		}
+		webInformation.MovieTvGame.Image = game.GetImageURL()
+		webInformation.MovieTvGame.Genres = game.GetGenres()
+	}
 }
 
 // execute movie / tv / game search.
