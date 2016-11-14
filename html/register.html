@@ -5,6 +5,7 @@
     <title>CountDown</title>
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="../css/main.css">
+    <link rel="stylesheet" type="text/css" href="../css/login.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>#homepage {visibility: hidden;}</style>
 </head>
@@ -12,7 +13,39 @@
 <body>
     {{template "header" .}}
     <form method="post">
-        <div class="container">
+            <center>
+            <section class="container">
+
+                <div class="login">
+                    <h1>Registration</h1>
+                    <p><input type="text" id="enterUsername" placeholder="username" name="newusername" autofocus/></p>
+                    <p><input type="text" id="username" placeholder="fullname" name="fullname"/></p>
+                    <p><input type="password" id="userPassword" placeholder="password" name="newpassword" /></p>
+                    <p><input type="password" id="userPassword" class="form-control input-sm chat-input" placeholder="confirm" name="confirm" /></p>
+                    <p>
+                        <div class="wrapper">
+                            <div>
+                                <label style="right: 22px;">Timezones:
+                            <select style="position: relative; left: 2px;" name="timezone">
+                                <option value="-8">Pacific</option>
+                                <option value="-7">Mountain</option>
+                                <option value="-6">Central</option>
+                                <option value="-5">Eastern</option>
+                            </select>
+                        </label>
+                                <label style="top: 2px; right: 10px;"><input style="right: 3px; top: 1px;" type="checkbox" name="dst" value="1">DST?</label>
+                            </div>
+                    </p>
+                    <div class="loginbtn">
+                        <p class="submit"><input type="submit" name="cmdbutton" value="OK"></p>
+                        <p class="submit"><input type="submit" name="cmdbutton" value="Cancel"></p>
+                    </div>
+                    <h2 id="usedmsg" style="position: relative; top: 12px; color: red;"></h2>
+                </div>
+
+            </section>
+        </center>
+    <!--<div class="container">
             <div class="row">
                 <div class="col-md-offset-5 col-md-3">
                     <div class="form-login">
@@ -46,7 +79,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>-->
     </form>
 
 

@@ -1,36 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>CountDown</title>
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-    <link rel = "stylesheet" type="text/css" href="../css/main.css">
+    <link rel="stylesheet" type="text/css" href="../css/main.css">
+    <link rel="stylesheet" type="text/css" href="../css/login.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>#homepage {visibility: hidden;}</style>
+    <!--<style>
+        #homepage {
+            visibility: hidden;
+        }
+    </style>-->
 </head>
 
 <body>
     {{template "header" .}}
 
-<form method="POST">
-<div class="container">
-    <div class="row">
-        <div class="col-md-offset-5 col-md-3">
-            <div class="form-login">
-                <h4>Welcome back.</h4>
-                <input type="text" id="userName" class="form-control input-sm chat-input" placeholder="username" name="username" autofocus/>
-                </br>
-                <input type="password" id="userPassword" class="form-control input-sm chat-input" placeholder="password" name="password" />
-                </br>
-                <div class="wrapper">
-            <span class="group-btn">
-                <button class="btn btn-primary btn-md buttonlink" type="submit" name="cmdbutton" value="Login">Login <i class="fa fa-sign-in"></i></button>
-                <button class="btn btn-primary btn-md buttonlink" type="submit" name="cmdbutton" value="Register">Register</button>
-            </span>
-                </div>
-            </div>
+    <form method="post">
+        <center>
+            <section class="container">
 
-        </div>
-    </div>
-</div>
-</form>
+                <div class="login">
+                    <h1>Login to Web App</h1>
+                    <p><input type="text" name="username" placeholder="Username" autofocus></p>
+                    <p><input type="password" name="password" value="" placeholder="Password"></p>
+                    <div class="loginbtn">
+                        <p class="submit"><input type="submit" name="cmdbutton" value="Login"></p>
+                        <p class="submit"><input type="submit" name="cmdbutton" value="Register"></p>
+                    </div>
+                </div>
+
+            </section>
+        </center>
+    </form>
+
 </body>

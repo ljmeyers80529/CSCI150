@@ -21,11 +21,6 @@ body {
   width: 640px;
 }
 
-center {
-  display: flex;
-  flex-direction: column;
-}
-
 .login {
   position: relative;
   margin: 0 auto;
@@ -82,7 +77,7 @@ center {
     }
   }
 
-  /*p.submit { text-align: right; }*/
+  p.submit { text-align: right; }
 }
 
 .login-help {
@@ -163,7 +158,13 @@ input[type=submit] {
   input[type=text], input[type=password] { line-height: 34px; }
 }
 
-.loginbtn {
+center {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+}
+
+.loginbtn {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
 }
