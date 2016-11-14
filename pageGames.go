@@ -5,5 +5,5 @@ import (
 )
 
 func pageGames(res http.ResponseWriter, req *http.Request) {
-   	tpl.ExecuteTemplate(res, "games.html", userInformation)
+	tpl.ExecuteTemplate(res, "games.html", webInformation)
 }

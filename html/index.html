@@ -96,6 +96,7 @@
                             </div>
                        </div>
                     </div>
+                    
                     <div id="moviemodal" class="modalDialog">
                         <div>
                             <a href="#close" title="Close" class="close">X</a>
@@ -103,6 +104,7 @@
                             <div class="movieDetailMsg">
                                 <h6>{{.MovieTvGame.Description}}</h6>
                                 <h6>Genres:{{range $idx, $g := .MovieTvGame.Genres}}&nbsp{{$g}}&nbsp{{end}}</h6>
+                                <h5><a href={{.MovieTvGame.Youtube}} target="_blank">Trailer</a><h5>
                                 <h6>Release Date: {{.MovieTvGame.ReleaseDate}}</h6>
                             </div>
                        </div>

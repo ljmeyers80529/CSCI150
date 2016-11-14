@@ -194,7 +194,7 @@ func toInt(req *http.Request, key string) (val int) {
 
 // set defaults.
 func setUserDefault() {
-	mtg := movieTvGameInformation{0, "", "", "", 0, 0, nil, 0, "" ,""}
+	mtg := movieTvGameInformation{0, "", "", "", 0, 0, nil, 0, "", ""}
 	userInformation = userInformationType{"", "", "", "", -8, true, false, nil}
 	webInformation = webInformationType{&userInformation, nil, nil, nil, mtg, nil}
 }
@@ -308,7 +308,16 @@ func movieInfo(ctx context.Context, movieID int) {
 		g = append(g, gn.Name)
 	}
 	webInformation.MovieTvGame.Genres = g
-	log.Infof(ctx, "Trailer: %s", webInformation.MovieTvGame.Youtube)
+
+	mv, _ := movieAPI.GetMovieVideos(ctx, movieID, nil)
+	log.Infof(ctx, "Trailer: %v", mv)
+	// log.Infof(ctx, "Trailer: %s", mv.Results[0].Key)
+
+	if len(mv.Results) > 0 {
+		webInformation.MovieTvGame.Youtube = fmt.Sprintf(youTubeBase, mv.Results[0].Key)
+	} else {
+		webInformation.MovieTvGame.Youtube = ""
+	}
 }
 
 func tvInfo(ctx context.Context, tvID int) {
