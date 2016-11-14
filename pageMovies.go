@@ -1,12 +1,12 @@
 package csci150
 
 import (
+	"fmt"
 	"net/http"
 	"sort"
 	"strconv"
 	"strings"
 	"time"
-	"fmt"
 
 	"golang.org/x/net/context"
 	"google.golang.org/appengine"
@@ -14,11 +14,11 @@ import (
 
 func pageMovies(res http.ResponseWriter, req *http.Request) {
 	ctx := appengine.NewContext(req)
-	readCookie(res, req)						// maintain user login / out state.apikey
+	readCookie(res, req) // maintain user login / out state.apikey
 
 	if req.Method == "POST" {
 		moviePost(ctx, res, req)
-		if webInformation.MovieTvGame.ID != 0 {		// no detail, search.
+		if webInformation.MovieTvGame.ID != 0 { // no detail, search.
 			http.Redirect(res, req, fmt.Sprintf("%s#moviemodal", req.URL.Path), http.StatusFound)
 		}
 	}
@@ -36,7 +36,7 @@ func topRatedMovies(ctx context.Context) topPopRated {
 	var rated topRatedPop
 
 	tr, _ := movieAPI.GetMovieTopRated(ctx, nil)
-	for _, val := range tr.Results {
+	for _, val := range tr.Results[:10] {
 		rated.Title = val.Title
 		rated.ID = val.ID
 		rated.Rating = val.VoteAverage
@@ -51,7 +51,7 @@ func popularMovies(ctx context.Context) topPopRated {
 	var rated topRatedPop
 
 	pop, _ := movieAPI.GetMoviePopular(ctx, nil)
-	for _, val := range pop.Results {
+	for _, val := range pop.Results[:10] {
 		rated.Title = val.Title
 		rated.ID = val.ID
 		rated.Rating = val.VoteAverage

@@ -1,31 +1,97 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-  	<link rel = "stylesheet" type = "text/css" href="result.css">
+    <title>CountDown -- Search Results</title>
+    <link rel="stylesheet" type="text/css" href="../css/main.css">
+    <link rel="stylesheet" type="text/css" href="../css/movies.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
+    {{template "header" .}}
+    <center>
+    <img src="../img/diningPhilo.svg" id="huns" width="200" height="200">
 
-  <h1 id="res">Movie Title</h1>
+        <form method="POST">
+                {{$log := .User.LoggedIn}}
+                <div class="SearchBar">
+                    <input id="s" type="text" name="search" placeholder="Search...">
+                    <button class="specify" name="cmdSearch" value="movies_tv">Movies & TV</button>
+                    <button class="specify" name="cmdSearch" value="games">Games</button>
+                </div>
+
+                <div class="movieTop">
+                    <div class="movieTab">
+                 			<h2 class= "title2">Movie</h2>
+                        <table style="font-size: 1.25rem">
+                            <thead>
+                                <td></td>
+                                <td>Movie Title</td>
+                                <td>Rating</td>
+                                {{if $log}}<td style="width: 60px">Watch / Fav</td>{{end}}
+                            </thead>
+                            <tbody>
+                                {{range $idx, $data := .Top}}
+                                <tr>
+                                    <td class="buttoncenter"><button class="btnInfoAdd" type="submit" name="cmdMID" value="{{$data.ID}}">Info</button></td>
+                                    <td>{{$data.Title}}</td>
+                                    <td>{{$data.Rating}}</td>
+                                    {{if $log}}<td class="buttoncenter"><button class="btnInfoAdd" type="submit" name="cmdMAdd" value="{{$data.ID}}">Add</button></td>{{end}}
+                                </tr>
+                                {{end}}
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="movieTab">
+                        
+                         <h2 class = "title3">TV</h2>
+                        <table style="font-size: 1.25rem">
+                            <thead>
+                                <td></td>
+                                <td>Movie Title</td>
+                                <td>Rating</td>
+                                {{if $log}}<td style="width: 60px">Watch / Fav</td>{{end}}
+                            </thead>
+                            <tbody>
+                                {{range $idx, $data := .Pop}}
+                                <tr>
+                                    <td class="buttoncenter"><button class="btnInfoAdd" type="submit" name="cmdTID" value="{{$data.ID}}">Info</button></td>
+                                    <td>{{$data.Title}}</td>
+                                    <td>{{$data.Rating}}</td>
+                                    {{if $log}}<td class="buttoncenter"><button class="btnInfoAdd" type="submit" name="cmdTAdd" value="{{$data.ID}}">Add</button></td>{{end}}
+                                </tr>
+                                {{end}}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>          
+
+                    <div id="moviemodal" class="modalDialog">
+                        <div>
+                            <a href="?srch={{.MovieTvGame.Search}}#close" title="Close" class="close">X</a>
+                            <img class="poster" src="{{.MovieTvGame.Image}}">
+                            <div class="movieDetailMsg">
+                                <h6>{{.MovieTvGame.Description}}</h6>
+                                <h6>Release Date: {{.MovieTvGame.ReleaseDate}}</h6>
+                                <h6>XXXXXXX</h6>
+                                <h6>Genres:{{range $idx, $g := .MovieTvGame.Genres}}&nbsp{{$g}}&nbsp{{end}}</h6>
+                            </div>
+                       </div>
+                    </div>
+
+                    <div id="tvmodal" class="modalDialog">
+                        <div>
+                            <a href="?srch={{.MovieTvGame.Search}}#close" title="Close" class="close">X</a>
+                            <img class="poster" src="{{.MovieTvGame.Image}}">
+                            <div class="movieDetailMsg">
+                                <h6>{{.MovieTvGame.Description}}</h6>
+                                <h6>{{.MovieTvGame.TVEpisodes}} Episodes over {{.MovieTvGame.TVSeasons}} Seasons.</h6>
+                                <h6>Genres:{{range $idx, $g := .MovieTvGame.Genres}}&nbsp{{$g}}&nbsp{{end}}</h6>
+                            </div>
+                       </div>
+                    </div>
+        </form>
+    </center>
 </body>
-  <div class="columnsA">
-    <div class="columnsB">
-      <h1>Movie Poster</h1>
-        <ol class="Poster">
-        </ol>
-  </div>
-
-    <div class="columnsC">
-      <h1>CountDown</h1>
-        <ol class="CD">
-        </ol>
-    </div>
-
-    <div class="columnsD">
-        <h1>Movie Rating</h1>
-          <ol class="Rating">
-          </ol>
-    </div>
-  </div>
-
-
 </html>

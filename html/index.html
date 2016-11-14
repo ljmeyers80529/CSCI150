@@ -28,8 +28,9 @@
            <div id="mass">
             <center>
                     <div class="SearchBar">
-                        <input style="width: 300px" id="s" type="text" name="search" placeholder="Search...">
-                        <button name="cmdSearch" value="all">Search</button>
+                    <input id="s" type="text" name="search" placeholder="Search...">
+                    <button class="specify" name="cmdSearch" value="movies_tv">Movies & TV</button>
+                    <button class="specify" name="cmdSearch" value="games">Games</button>
                     </div>
             </center>
             {{if .User.LoggedIn}}

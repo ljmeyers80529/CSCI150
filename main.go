@@ -23,7 +23,7 @@ func init() {
 	http.HandleFunc("/movies", pageMovies)
 	http.HandleFunc("/games", pageGames)
 	http.HandleFunc("/tv", pageTV)
-	// http.HandleFunc("/result", pageResult)
+	http.HandleFunc("/results", pageResults)
 
 	// http.HandleFunc("/count", pageTest)
 	tpl = template.Must(template.ParseGlob("html/*.html"))
