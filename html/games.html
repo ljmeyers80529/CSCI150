@@ -1,47 +1,119 @@
 <!DOCTYPE html>
-<head>
-    <html lang="en">
-    <title>CountDown</title>
-    <link rel = "stylesheet" type="text/css" href="../css/main.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head><!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <title>Countdown -- Games</title>
+    <link rel="stylesheet" type="text/css" href="../css/main.css">
+    <link rel="stylesheet" type="text/css" href="../css/movies.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../js/countdown.js" type="text/javascript"></script>
+</head>
 
 <body>
     {{template "header" .}}
-<center>
-<img src="../img/diningPhilo.svg" id="huns" width="200" height="200">
 
-    <div id="mass">
-        <div class="SearchBar">
-            <form>
-                <input type="text" name="search" placeholder="Search..." id="s">
-                <button class="specify">Movies & TV</button>
-                <button class="specify">Games</button>
-            </form>
-        </div>
+    <img src="../img/diningPhilo.svg" id="huns" width="200" height="200">
+    <center>
+        <form method="POST">
+            <div id="mass">
+                <div class="SearchBar">
+                    <input id="s" type="text" name="search" placeholder="Search...">
+                    <button class="specify" name="cmdSearch" value="movies_tv">Movies & TV</button>
+                    <button class="specify" name="cmdSearch" value="games">Games</button>
+                </div>
 
-        <div class="columns">
-            <h1>Top Rated</h1>
-            <ol class="Top">
-                <li><button class ="button"><a href="#" class="button1"><p>Movie1</p></a></button></li>
-                <li><button class ="button"><a href="#" class="button1"><p>Movie2</p></a></button></li>
-                <li><button class ="button"><a href="#" class="button1"><p>Movie3</p></a></button></li>
-                <li><button class ="button"><a href="#" class="button1"><p>Movie4</p></a></button></li>
-            </ol>
-        </div>
+                <div class="movieTop">
+                    <div class="movieTab">
+                        <h2>Top Rated</h2>
+                        <table style="font-size: 1.25rem">
+                            <thead>
+                                <td></td>
+                                <td>Game Title</td>
+                                <td>Rating</td>
+                            </thead>
+                            <tbody>
+                                {{range $idx, $data := .Top}}
+                                <tr>
+                                    <td class="buttoncenter"><button type="submit" name="cmdID" value="{{$data.ID}}">Info: {{printf "%06d" $data.ID}}</button></td>
+                                    <td>{{$data.Title}}</td>
+                                    <td>{{$data.Rating}}</td>
+                                </tr>
+                                {{end}}
+                            </tbody>
+                        </table>
+                    </div>
 
-        <div class="columns1">
-            <h1>Upcoming Games</h1>
-            <ol class="Upcoming">
-                <li><button class ="button"><a href="#" class="button1"><p>Movie1</p></a></button></li>
-                <li><button class ="button"><a href="#" class="button1"><p>Movie2</p></a></button></li>
-                <li><button class ="button"><a href="#" class="button1"><p>Movie3</p></a></button></li>
-                <li><button class ="button"><a href="#" class="button1"><p>Movie4</p></a></button></li>
-            </ol>
-        </div>
+                    <div class="movieTab">
+                        <h2>Popular</h2>
+                        <table style="font-size: 1.25rem">
+                            <thead>
+                                <td></td>
+                                <td>Game Title</td>
+                                <td>Rating</td>
+                            </thead>
+                            <tbody>
+                                {{range $idx, $data := .Pop}}
+                                <tr>
+                                    <td class="buttoncenter"><button type="submit" name="cmdID" value="{{$data.ID}}">Info: {{printf "%06d" $data.ID}}</button></td>
+                                    <td>{{$data.Title}}</td>
+                                    <td>{{$data.Rating}}</td>
+                                </tr>
+                                {{end}}
+                            </tbody>
+                        </table>
+                    </div>
 
-    </div>
-</center>
+                </div>
+
+                <div>
+                    <h2>Upcoming Games</h2>
+                    <table style="font-size: 1.25rem">
+                        <thead>
+                            <td></td>
+                            <td>Game Title</td>
+                            <td>Remaining Time</td>
+                        </thead>
+                        <tbody>
+                            {{$tz := .User.Timezone}}
+                            {{range $idx, $data := .Counters}}
+                            <tr>
+                                <td class="buttoncenter"><button type="submit" name="cmdID" value="{{$data.ID}}">Info: {{printf "%06d" $data.ID}}</button></td>
+                                <td>{{$data.Title}}</td>
+                                <td>
+                                    <script type="application/javascript">
+                            var clk = new Countdown({year: {{$data.Year}},
+	    					 month: {{$data.Month}},
+		    				 day: {{$data.Day}},
+			    			 hour: {{$data.Hours}},
+				    		 minute: {{$data.Minutes}},
+					    	 timezone: {{$tz}},
+    						 rangeHi:"day",
+	    					 width:150, 
+ 		    				 height:30,  
+				    		 style: "flip"
+			    			 });
+                    </script>
+                                </td>
+                            </tr>
+                            {{end}}
+                        </tbody>
+                    </table>
+                </div>
+                    <div id="gamemodal" class="modalDialog">
+                        <div>
+                            <a href="#close" title="Close" class="close">X</a>
+                            <img class="poster" src="{{.MovieTvGame.Image}}">
+                            <div class="movieDetailMsg">
+                                <h4>{{.MovieTvGame.Description}}</h4>
+                                <h4>Genres:{{range $idx, $g := .MovieTvGame.Genres}}&nbsp{{$g}}&nbsp{{end}}</h4>
+                                <h4>Release Date: {{.MovieTvGame.ReleaseDate}}
+                            </div>
+                       </div>
+                    </div>
+            </div>
+        </form>
+    </center>
 
 </body>
+
+</html>
