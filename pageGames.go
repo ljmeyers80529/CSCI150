@@ -8,6 +8,7 @@ import (
 	"github.com/Henry-Sarabia/igdbgo"
 	"golang.org/x/net/context"
 	"google.golang.org/appengine"
+	"google.golang.org/appengine/log"
 )
 
 func pageGames(res http.ResponseWriter, req *http.Request) {
@@ -34,8 +35,11 @@ func upcomingGames(ctx context.Context) cdUpcomming {
 	var game upComming
 	list, err := igdbgo.GetUpcoming(ctx)
 	if err != nil {
+		log.Infof(ctx, "\n\nError: %v\n\n", err)
 		return nil
 	}
+
+	log.Infof(ctx, "\n\nGames: %v\n\n", list)
 
 	for _, val := range list {
 		game.Title = val.Name
@@ -56,8 +60,11 @@ func topRatedGames(ctx context.Context) topPopRated {
 
 	list, err := igdbgo.GetTop(ctx)
 	if err != nil {
+		log.Infof(ctx, "\n\nError: %v\n\n", err)
 		return nil
 	}
+
+	log.Infof(ctx, "\n\nGames: %v\n\n", list)
 
 	for _, val := range list {
 		rated.ID = val.ID
@@ -84,8 +91,11 @@ func popularGames(ctx context.Context) topPopRated {
 	//list, err := igdbgo.GetGames(ctx, "", 10, 2, 1, "") //any title, 10 listings, by popularity, descending
 	list, err := igdbgo.GetPop(ctx)
 	if err != nil {
+		log.Infof(ctx, "\n\nError: %v\n\n", err)
 		return nil
 	}
+
+	log.Infof(ctx, "\n\nGames: %v\n\n", list)
 
 	for _, val := range list {
 		rated.ID = val.ID
