@@ -26,9 +26,9 @@
                         <table style="font-size: 1.25rem">
                             <thead>
                                 <td></td>
-                                <td>Movie Title</td>
-                                <td>Rating</td>
-                                {{if $log}}<td style="width: 60px">Watch / Fav</td>{{end}}
+                                <td><text class="detail">Movie Title</text></td>
+                                <td><text class="detail">Rating</text></td>
+                                {{if $log}}<td style="width: 60px"><text class="detail">Watch / Fav</text></td>{{end}}
                             </thead>
                             <tbody>
                                 {{range $idx, $data := .Top}}
@@ -49,9 +49,9 @@
                         <table style="font-size: 1.25rem">
                             <thead>
                                 <td></td>
-                                <td>Movie Title</td>
-                                <td>Rating</td>
-                                {{if $log}}<td style="width: 60px">Watch / Fav</td>{{end}}
+                                <<td><text class="detail">Movie Title</text></td>
+                                <td><text class="detail">Rating</text></td>
+                                {{if $log}}<td style="width: 60px"><text class="detail">Watch / Fav</text></td>{{end}}
                             </thead>
                             <tbody>
                                 {{range $idx, $data := .Pop}}

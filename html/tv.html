@@ -27,10 +27,10 @@
                             <h2>Top Rated</h2>
                             <table style="font-size: 1.25rem">
                                 <thead style="font-size: 1rem">
-                                    <td>Detail</td>
-                                    <td>Show Title</td>
-                                    <td>Rating</td>
-                                    {{if $log}}<td style="width: 60px">Watch / Fav</td>{{end}}
+                                    <td><text class="detail">Detail</text></td>
+                                    <td><text class="detail">Show Title</text></td>
+                                    <td><text class="detail">Rating</text></td>
+                                    {{if $log}}<td style="width: 60px"><text class="detail">Watch / Fav</text></td>{{end}}
                                 </thead>
                                 <tbody>
                                     {{range $idx, $data := .Top}}
@@ -48,10 +48,10 @@
                             <h2>Popular</h2>
                             <table style="font-size: 1.25rem">
                                 <thead style="font-size: 1rem">
-                                    <td>Detail</td>
-                                    <td>Movie Title</td>
-                                    <td>Rating</td>
-                                    {{if $log}}<td style="width: 60px">Watch / Fav</td>{{end}}
+                                    <td><text class="detail">Detail</text></td>
+                                    <td><text class="detail">Movie Title</text></td>
+                                    <td><text class="detail">Rating</text></td>
+                                    {{if $log}}<td style="width: 60px"><text class="detail">Watch / Fav</text></td>{{end}}
                                 </thead>
                                 <tbody>
                                     {{range $idx, $data := .Pop}}

@@ -23,18 +23,16 @@
                 </div>
 
                 {{$log := .User.LoggedIn}}
-
-                <div class="movieTop">
-                <div class="movieTab">
+                <div>
+                  	
                   	<h2 class = "title1">Upcoming Movies</h2>
                     <table style="font-size: 1.25rem">
 
                         <thead>
-                            <td></td>
-                            
-                            <td>Movie Title</td>
-                            <td>Remaining Time</td>
-                            {{if $log}}<td style="width: 60px">Watch / Fav</td>{{end}}
+                            <td><text class="detail">Detail</text></td>
+                            <td><text class="detail">Movie Title</text></td>
+                            <td><text class="detail">Remaining Time</text></td>
+                            {{if $log}}<td style="width: 60px"><text class="detail">Watch / Fav</text></td>{{end}}
                         </thead>
                         <tbody>
                             {{$tz := .User.Timezone}}
@@ -64,14 +62,16 @@
                     </table>
                 </div>
                 
+            </div>
+                <div class="movieTop">
                     <div class="movieTab">
                  			<h2 class= "title2">Top Rated</h2>
                         <table style="font-size: 1.25rem">
                             <thead>
-                                <td></td>
-                                <td>Movie Title</td>
-                                <td>Rating</td>
-                                {{if $log}}<td style="width: 60px">Watch / Fav</td>{{end}}
+                                <td><text class="detail">Detail</text></td>
+                                <td><text class="detail">Movie Title</text></td>
+                                <td><text class="detail">Rating</text></td>
+                                {{if $log}}<td style="width: 60px"><text class="detail">Watch / Fav</text></td>{{end}}
                             </thead>
                             <tbody>
                                 {{range $idx, $data := .Top}}
@@ -91,10 +91,10 @@
                          <h2 class = "title3">Popular</h2>
                         <table style="font-size: 1.25rem">
                             <thead>
-                                <td></td>
-                                <td>Movie Title</td>
-                                <td>Rating</td>
-                                {{if $log}}<td style="width: 60px">Watch / Fav</td>{{end}}
+                                 <td><text class="detail">Detail</text></td>
+                                <td><text class="detail">Movie Title</text></td>
+                                <td><text class="detail">Rating</text></td>
+                                {{if $log}}<td style="width: 60px"><text class="detail">Watch / Fav</text></td>{{end}}
                             </thead>
                             <tbody>
                                 {{range $idx, $data := .Pop}}
@@ -109,7 +109,6 @@
                         </table>
                     </div>
                 </div>          
-            </div>
                     <div id="moviemodal" class="modalDialog">
                         <div>
                             <a href="#close" title="Close" class="close">X</a>
