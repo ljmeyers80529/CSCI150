@@ -10,13 +10,14 @@ import (
 	"github.com/Henry-Sarabia/igdbgo"
 	"golang.org/x/net/context"
 	"google.golang.org/appengine"
-	"google.golang.org/appengine/log"
+	// "google.golang.org/appengine/log"
 )
 
 // main (top) web page.
 func pageMain(res http.ResponseWriter, req *http.Request) {
 	ctx := appengine.NewContext(req)
 	readCookie(res, req) // maintain user login / out state.apikey
+	popWatch(ctx)
 
 	if req.Method == "POST" {
 		infoID := toInt(req, "cmdID")
@@ -41,11 +42,16 @@ func pageMain(res http.ResponseWriter, req *http.Request) {
 			}
 		}
 		if removeID > 0 {
-			log.Infof(ctx, "ID: %8d\tLocation: %d\n", removeID, removeItem(removeID))
+			if removeID == 4096 {
+				removeID = 0
+			}
+			userInformation.Watched = append(userInformation.Watched[:removeID], userInformation.Watched[removeID+1:]...)
+			updateCookie(res, req)
+			WriteUserInformation(ctx, req) // write added item to datastore / memcache
+			popWatch(ctx)
 		}
 		executeSearch(res, req)
 	}
-	popWatch(ctx)
 	tpl.ExecuteTemplate(res, "index.html", webInformation)
 }
 
@@ -128,11 +134,14 @@ func itemType(ID int) int {
 func removeItem(ID int) int {
 	var location = 0
 
-	for _, val := range webInformation.Watched {
+	w := webInformation.Watched
+	for _, val := range w {
 		if val.ID == ID {
 			break
 		}
 		location++
 	}
+	// w = append(w[:location], w[location+1:]...)
+	// webInformation.Watched = w
 	return location
 }

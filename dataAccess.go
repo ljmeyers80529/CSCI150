@@ -17,7 +17,6 @@ import (
 	"google.golang.org/appengine"
 	"google.golang.org/appengine/datastore"
 	"google.golang.org/appengine/log"
-	// "github.com/Henry-Sarabia/igdbgo"
 	"google.golang.org/appengine/memcache"
 )
 
@@ -291,7 +290,7 @@ func gamePost(ctx context.Context, res http.ResponseWriter, req *http.Request) {
 	if info != 0 {
 		gameInfo(ctx, info, i)
 	}
-	if watchID != 0 && !duplicate(int32(watchID), 0) {
+	if watchID != 0 && !duplicate(int32(watchID), 2) {
 		w := watch{int32(watchID), 2}
 		userInformation.Watched = append(userInformation.Watched, w)
 		updateCookie(res, req)
