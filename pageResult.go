@@ -27,6 +27,7 @@ func pageResults(res http.ResponseWriter, req *http.Request) {
 
 	webInformation.Top = searchMovies(ctx, search) // search for movies.
 	webInformation.Pop = searchTV(ctx, search)     // search for tv.
+	webInformation.Game = searchTV(ctx, search)
 
 	tpl.ExecuteTemplate(res, "result.html", webInformation)
 }

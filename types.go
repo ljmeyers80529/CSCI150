@@ -66,7 +66,7 @@ type watchedType struct {
 type webInformationType struct {
 	User        *userInformationType
 	Counters    cdUpcomming
-	Top, Pop    topPopRated
+	Top, Pop, Game    topPopRated
 	MovieTvGame movieTvGameInformation
 	Watched     []watchedType
 }
