@@ -282,30 +282,41 @@ func movieTvPost(ctx context.Context, res http.ResponseWriter, req *http.Request
 }
 
 // gamePost retrieves and formats individual game information
-func gamePost(ctx context.Context, req *http.Request) {
+func gamePost(ctx context.Context, res http.ResponseWriter, req *http.Request) {
 	i := req.FormValue("cmdID")
 	info := toInt(req, "cmdID")
+	watchID := toInt(req, "cmdAdd")
 
 	webInformation.MovieTvGame.ID = 0
 	if info != 0 {
-		gm, err := igdbgo.GetGames(ctx, "", 1, 0, 0, i)
-		if err != nil {
-			return
-		}
-		game := gm[0]
-
-		webInformation.MovieTvGame.ID = info
-		webInformation.MovieTvGame.Description = game.Summary
-		if game.FirstRelease != 0 {
-			y, m, d := game.GetDate()
-			date := strconv.Itoa(m) + "-" + strconv.Itoa(d) + "-" + strconv.Itoa(y)
-			webInformation.MovieTvGame.ReleaseDate = date
-		} else {
-			webInformation.MovieTvGame.ReleaseDate = "Future"
-		}
-		webInformation.MovieTvGame.Image = game.GetImageURL()
-		webInformation.MovieTvGame.Genres = game.GetGenres()
+		gameInfo(ctx, info, i)
 	}
+	if watchID != 0 && !duplicate(int32(watchID), 0) {
+		w := watch{int32(watchID), 2}
+		userInformation.Watched = append(userInformation.Watched, w)
+		updateCookie(res, req)
+		WriteUserInformation(ctx, req)
+	}
+}
+
+func gameInfo(ctx context.Context, info int, i string) {
+	gm, err := igdbgo.GetGames(ctx, "", 1, 0, 0, i)
+	if err != nil {
+		return
+	}
+	game := gm[0]
+
+	webInformation.MovieTvGame.ID = info
+	webInformation.MovieTvGame.Description = game.Summary
+	if game.FirstRelease != 0 {
+		y, m, d := game.GetDate()
+		date := strconv.Itoa(m) + "-" + strconv.Itoa(d) + "-" + strconv.Itoa(y)
+		webInformation.MovieTvGame.ReleaseDate = date
+	} else {
+		webInformation.MovieTvGame.ReleaseDate = "Future"
+	}
+	webInformation.MovieTvGame.Image = game.GetImageURL()
+	webInformation.MovieTvGame.Genres = game.GetGenres()
 }
 
 // execute movie / tv / game search.

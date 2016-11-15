@@ -12,9 +12,9 @@ import (
 
 func pageGames(res http.ResponseWriter, req *http.Request) {
 	ctx := appengine.NewContext(req)
-
+	readCookie(res, req)
 	if req.Method == "POST" {
-		gamePost(ctx, req)
+		gamePost(ctx, res, req)
 		if webInformation.MovieTvGame.ID != 0 {
 			http.Redirect(res, req, fmt.Sprintf("%s#gamemodal", req.URL.Path), http.StatusFound)
 		}

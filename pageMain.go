@@ -7,6 +7,7 @@ import (
 
 	"strconv"
 
+	"github.com/Henry-Sarabia/igdbgo"
 	"golang.org/x/net/context"
 	"google.golang.org/appengine"
 	"google.golang.org/appengine/log"
@@ -33,6 +34,10 @@ func pageMain(res http.ResponseWriter, req *http.Request) {
 					http.Redirect(res, req, fmt.Sprintf("%s#tvmodal", req.URL.Path), http.StatusFound)
 				}
 			case 2:
+				gamePost(ctx, res, req)
+				if webInformation.MovieTvGame.ID != 0 {
+					http.Redirect(res, req, fmt.Sprintf("%s#gamemodal", req.URL.Path), http.StatusFound)
+				}
 			}
 		}
 		if removeID > 0 {
@@ -79,6 +84,23 @@ func popWatch(ctx context.Context) {
 			wi.Rating = tvi.VoteAverage
 			wi.Release = ""
 		case 2:
+			gms, _ := igdbgo.GetGames(ctx, "", 1, 0, 0, strconv.Itoa(wi.ID))
+			gmi := gms[0]
+			wi.Game = true
+			wi.Future = (true)
+			wi.Title = gmi.Name
+			wi.Rating = float32(gmi.Rating)
+			y, m, d := gmi.GetDate()
+			date := strconv.Itoa(m) + "-" + strconv.Itoa(d) + "-" + strconv.Itoa(y)
+			wi.Release = date
+			wi.Future = gmi.CheckFuture()
+			if wi.Future {
+				wi.Year = y
+				wi.Month = m
+				wi.Day = d
+				wi.Hours = 0
+				wi.Minutes = 0
+			}
 		}
 		wis = append(wis, wi)
 	}
