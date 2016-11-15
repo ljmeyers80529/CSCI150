@@ -11,13 +11,13 @@ import (
 	"strconv"
 	"strings"
 
+	"github.com/Henry-Sarabia/igdbgo"
 	"github.com/nu7hatch/gouuid"
 	"golang.org/x/net/context"
 	"google.golang.org/appengine"
 	"google.golang.org/appengine/datastore"
 	"google.golang.org/appengine/log"
-	// "google.golang.org/appengine/log"
-	"github.com/Henry-Sarabia/igdbgo"
+	// "github.com/Henry-Sarabia/igdbgo"
 	"google.golang.org/appengine/memcache"
 )
 
