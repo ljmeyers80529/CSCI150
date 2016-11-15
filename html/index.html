@@ -24,9 +24,9 @@
                 <img src="../img/diningPhilo.svg">
             </figure>
         </div>
+            <center>
         <form method="POST">
            <div id="mass">
-            <center>
                     <div class="SearchBar">
                     <input id="s" type="text" name="search" placeholder="Search...">
                     <button class="specify" name="cmdSearch" value="movies_tv">Movies & TV</button>
@@ -82,7 +82,6 @@
                     </tbody>
                 </table>
                 {{end}}
-            </center>
             {{end}}
     </div>
                     <div id="tvmodal" class="modalDialog">
@@ -110,8 +109,10 @@
                        </div>
                     </div>
 
+
                      <div id="gamemodal" class="modalDialog">
                         <div>
+                            <center>
                             <a href="#close" title="Close" class="close">X</a>
                             <img class="poster" src="{{.MovieTvGame.Image}}">
                             <div class="movieDetailMsg">
@@ -119,10 +120,12 @@
                                 <h6>Genres:{{range $idx, $g := .MovieTvGame.Genres}}&nbsp{{$g}}&nbsp{{end}}</h6>
                                 <h6>Release Date: {{.MovieTvGame.ReleaseDate}}</h6>
                             </div>
+                            </center>
                        </div>
                     </div>
             </div>
     </form>
+            </center>
 
 </body>
 

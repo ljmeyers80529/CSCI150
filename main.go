@@ -24,6 +24,7 @@ func init() {
 	http.HandleFunc("/games", pageGames)
 	http.HandleFunc("/tv", pageTV)
 	http.HandleFunc("/results", pageResults)
+	http.HandleFunc("/gresults", pageGResults)
 
 	// http.HandleFunc("/count", pageTest)
 	tpl = template.Must(template.ParseGlob("html/*.html"))
