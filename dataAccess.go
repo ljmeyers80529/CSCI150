@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
+	"math"
 	"net/http"
 	"strconv"
 	"strings"
@@ -361,4 +362,13 @@ func tvInfo(ctx context.Context, tvID int) {
 		g = append(g, gn.Name)
 	}
 	webInformation.MovieTvGame.Genres = g
+}
+
+func round(num float64) int {
+	return int(num + math.Copysign(0.5, num))
+}
+
+func setPrecision(num float64, prec int) float64 {
+	output := math.Pow(10, float64(prec))
+	return float64(round(num*output)) / output
 }
