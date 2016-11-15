@@ -326,9 +326,6 @@ func executeSearch(res http.ResponseWriter, req *http.Request) {
 	if searchCmd == "movies_tv" {
 		http.Redirect(res, req, fmt.Sprintf("/results?srch=%s", search), http.StatusFound)
 	}
-	if searchCmd == "games" {
-		http.Redirect(res, req, fmt.Sprintf("/gresults?srch=%s", search), http.StatusFound)
-	}
 }
 
 func movieInfo(ctx context.Context, movieID int) {
