@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/Henry-Sarabia/igdbgo"
 	"golang.org/x/net/context"
 	"google.golang.org/appengine"
 	// "google.golang.org/appengine/log"
@@ -27,9 +28,27 @@ func pageResults(res http.ResponseWriter, req *http.Request) {
 
 	webInformation.Top = searchMovies(ctx, search) // search for movies.
 	webInformation.Pop = searchTV(ctx, search)     // search for tv.
-	webInformation.Game = searchTV(ctx, search)
+	webInformation.Game = searchGames(ctx, search) // search for games
 
 	tpl.ExecuteTemplate(res, "result.html", webInformation)
+}
+
+func searchGames(ctx context.Context, search string) topPopRated {
+	var tops topPopRated
+	var rated topRatedPop
+
+	list, err := igdbgo.GetGames(ctx, search, 15, 0, 0, "")
+	if err != nil {
+		return nil
+	}
+
+	for _, val := range list {
+		rated.Title = val.Name
+		rated.ID = val.ID
+		rated.Rating = float32(val.Rating)
+		tops = append(tops, rated)
+	}
+	return tops
 }
 
 // get list of top rated movies.
