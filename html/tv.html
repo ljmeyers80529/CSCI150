@@ -31,6 +31,7 @@
                                     <td><center><text class="detail">Detail</text></center></td>
                                     <td><center><text class="detail">Title</text></center></td>
                                     <td><center><text class="detail">Rating</text><center></td>
+                                    <td><center><text class="detail">1st Air</text><center></td>
                                         {{if $log}}<td style="width: 60px"><center><text class="detail">Favorite</text></center></td>{{end}}
                                 </thead>
                                 <tbody>
@@ -40,6 +41,7 @@
                                         <td>{{$data.Title}}</td>
                                         {{if $data.Rating}}<td>{{$data.Rating}}</td>{{else}}
                                         <td>N/A</td>{{end}}
+                                        <td>{{$data.Release}}</td>
                                         {{if $log}}<td class="buttoncenter"><button class="btnInfoAdd" type="submit" name="cmdAdd" value="{{$data.ID}}">Add</button></td>{{end}}
                                     </tr>
                                     {{end}}
@@ -53,6 +55,7 @@
                                     <td><center><text class="detail">Detail</text></center></td>
                                     <td><center><text class="detail">Title</text></center></td>
                                     <td><center><text class="detail">Rating</text></center></td>
+                                    <td><center><text class="detail">1st Air</text><center></td>
                                     {{if $log}}<td style="width: 60px"><center><text class="detail">Favorite</text></center></td>{{end}}
                                 </thead>
                                 <tbody>
@@ -62,6 +65,7 @@
                                         <td>{{$data.Title}}</td>
                                         {{if $data.Rating}}<td>{{$data.Rating}}</td>{{else}}
                                         <td>N/A</td>{{end}}
+                                        <td>{{$data.Release}}</td>
                                         {{if $log}}<td class="buttoncenter"><button class="btnInfoAdd" type="submit" name="cmdAdd" value="{{$data.ID}}">Add</button></td>{{end}}
                                     </tr>
                                     {{end}}

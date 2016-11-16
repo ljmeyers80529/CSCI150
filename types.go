@@ -12,9 +12,10 @@ type upComming struct {
 
 // list of top rated movies.
 type topRatedPop struct {
-	Title  string
-	ID     int
-	Rating float32
+	Title   string
+	ID      int
+	Rating  float32
+	Release string
 }
 
 // definition for maovie / tv / game detail.

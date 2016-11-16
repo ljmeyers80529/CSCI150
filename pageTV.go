@@ -36,6 +36,7 @@ func topRatedTV(ctx context.Context) topPopRated {
 		rated.Title = val.Name
 		rated.ID = val.ID
 		rated.Rating = val.VoteAverage
+		rated.Release = val.FirstAirDate
 		tops = append(tops, rated)
 	}
 	return tops
@@ -51,6 +52,7 @@ func popularTV(ctx context.Context) topPopRated {
 		rated.Title = val.Name
 		rated.ID = val.ID
 		rated.Rating = val.VoteAverage
+		rated.Release = val.FirstAirDate
 		tops = append(tops, rated)
 	}
 	return tops
