@@ -116,9 +116,10 @@
                             <a href="#close" title="Close" class="close">X</a>
                             <img class="poster" src="{{.MovieTvGame.Image}}">
                             <div class="movieDetailMsg">
-                                <h4>{{.MovieTvGame.Description}}</h4>
-                                <h4>Genres:{{range $idx, $g := .MovieTvGame.Genres}}&nbsp{{$g}}&nbsp{{end}}</h4>
-                                <h4>Release Date: {{.MovieTvGame.ReleaseDate}}
+                                <h6>{{.MovieTvGame.Description}}</h6>
+                                <h6>Genres:{{range $idx, $g := .MovieTvGame.Genres}}&nbsp{{$g}}&nbsp{{end}}</h6>
+                                <h6>Release Date: {{.MovieTvGame.ReleaseDate}}</h6>
+                                <h5><a href={{.MovieTvGame.Youtube}} target="_blank">Trailer</a>
                             </div>
                        </div>
                     </div>
