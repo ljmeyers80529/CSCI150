@@ -52,7 +52,7 @@ func searchGames(ctx context.Context, search string) topPopRated {
 	for _, val := range list {
 		rated.Title = val.Name
 		rated.ID = val.ID
-		rated.Rating = float32(val.Rating)
+		rated.Rating = float32(setPrecision(val.Rating, 1))
 		tops = append(tops, rated)
 	}
 	return tops

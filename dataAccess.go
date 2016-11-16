@@ -330,6 +330,10 @@ func gameInfo(ctx context.Context, info int, i string) {
 	}
 	webInformation.MovieTvGame.Image = game.GetImageURL()
 	webInformation.MovieTvGame.Genres = game.GetGenres()
+	webInformation.MovieTvGame.Youtube, err = game.GetVideoURL()
+	if err != nil {
+		webInformation.MovieTvGame.Youtube = ""
+	}
 }
 
 // execute movie / tv / game search.
