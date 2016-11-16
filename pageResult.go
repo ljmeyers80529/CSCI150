@@ -68,7 +68,7 @@ func searchMovies(ctx context.Context, search string) topPopRated {
 	for _, val := range tr.Results {
 		rated.Title = val.Title
 		rated.ID = val.ID
-		rated.Rating = val.VoteAverage
+		rated.Rating = float32(setPrecision(float64(val.VoteAverage), 1))
 		tops = append(tops, rated)
 	}
 	return tops
@@ -84,7 +84,7 @@ func searchTV(ctx context.Context, search string) topPopRated {
 	for _, val := range tr.Results {
 		rated.Title = val.Name
 		rated.ID = val.ID
-		rated.Rating = val.VoteAverage
+		rated.Rating = float32(setPrecision(float64(val.VoteAverage), 1))
 		tops = append(tops, rated)
 	}
 	return tops

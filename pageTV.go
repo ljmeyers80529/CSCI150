@@ -35,7 +35,7 @@ func topRatedTV(ctx context.Context) topPopRated {
 	for _, val := range tr.Results {
 		rated.Title = val.Name
 		rated.ID = val.ID
-		rated.Rating = val.VoteAverage
+		rated.Rating = float32(setPrecision(float64(val.VoteAverage), 1))
 		rated.Release = val.FirstAirDate
 		tops = append(tops, rated)
 	}
@@ -51,7 +51,7 @@ func popularTV(ctx context.Context) topPopRated {
 	for _, val := range pop.Results {
 		rated.Title = val.Name
 		rated.ID = val.ID
-		rated.Rating = val.VoteAverage
+		rated.Rating = float32(setPrecision(float64(val.VoteAverage), 1))
 		rated.Release = val.FirstAirDate
 		tops = append(tops, rated)
 	}
