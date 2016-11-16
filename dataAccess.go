@@ -324,7 +324,7 @@ func gameInfo(ctx context.Context, info int, i string) {
 	webInformation.MovieTvGame.Description = game.Summary
 	if game.FirstRelease != 0 {
 		y, m, d := game.GetDate()
-		date := strconv.Itoa(m) + "-" + strconv.Itoa(d) + "-" + strconv.Itoa(y)
+		date := strconv.Itoa(m) + "/" + strconv.Itoa(d) + "/" + strconv.Itoa(y)
 		webInformation.MovieTvGame.ReleaseDate = date
 	} else {
 		webInformation.MovieTvGame.ReleaseDate = "Future"
@@ -358,7 +358,7 @@ func movieInfo(ctx context.Context, movieID int) {
 	webInformation.MovieTvGame.mtgType = 0
 	webInformation.MovieTvGame.Description = mvi.Overview
 	if mvi.ReleaseDate != "" {
-		webInformation.MovieTvGame.ReleaseDate = mvi.ReleaseDate
+		webInformation.MovieTvGame.ReleaseDate = formatDate(mvi.ReleaseDate)
 	} else {
 		webInformation.MovieTvGame.ReleaseDate = "Future"
 	}
@@ -389,7 +389,7 @@ func tvInfo(ctx context.Context, tvID int) {
 	webInformation.MovieTvGame.Description = tvi.Overview
 	webInformation.MovieTvGame.TVSeasons = tvi.NumberOfSeasons
 	webInformation.MovieTvGame.TVEpisodes = tvi.NumberOfEpisodes
-	webInformation.MovieTvGame.ReleaseDate = tvi.FirstAirDate
+	webInformation.MovieTvGame.ReleaseDate = formatDate(tvi.FirstAirDate)
 	log.Infof(ctx, "Air Date: %s", tvi.FirstAirDate)
 	for _, gn := range tvi.Genres {
 		g = append(g, gn.Name)
@@ -411,4 +411,13 @@ func setPrecision(num float64, prec int) float64 {
 // round is a function that takes a float64 and rounds it down to a number out of 10 with only 1 significant digit
 func round(num float64) float32 {
 	return float32(setPrecision((num / 10), 1))
+}
+
+// formatDate takes a date string that has been previously formatted by the Movie and TV API and returns
+// a date formatted in the American format
+func formatDate(date string) string {
+	s := strings.Split(date, "-")
+	m, _ := strconv.Atoi(s[1])
+	d, _ := strconv.Atoi(s[2])
+	return strconv.Itoa(m) + "/" + strconv.Itoa(d) + "/" + s[0]
 }

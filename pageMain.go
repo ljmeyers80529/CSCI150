@@ -71,7 +71,7 @@ func popWatch(ctx context.Context) {
 			wi.Movie = true
 			wi.Title = mvi.Title
 			wi.Rating = float32(setPrecision(float64(mvi.VoteAverage), 1))
-			wi.Release = mvi.ReleaseDate
+			wi.Release = formatDate(mvi.ReleaseDate)
 			dr, ok := movieRelease(ctx, wi.ID)
 			wi.Future = ok
 			if wi.Future {
@@ -88,7 +88,7 @@ func popWatch(ctx context.Context) {
 			wi.Future = false
 			wi.Title = tvi.Name
 			wi.Rating = float32(setPrecision(float64(tvi.VoteAverage), 1))
-			wi.Release = tvi.FirstAirDate
+			wi.Release = formatDate(tvi.FirstAirDate)
 		case 2:
 			gms, _ := igdbgo.GetGames(ctx, "", 1, 0, 0, strconv.Itoa(wi.ID))
 			gmi := gms[0]
@@ -96,7 +96,7 @@ func popWatch(ctx context.Context) {
 			wi.Title = gmi.Name
 			wi.Rating = round(gmi.Rating)
 			y, m, d := gmi.GetDate()
-			date := strconv.Itoa(m) + "-" + strconv.Itoa(d) + "-" + strconv.Itoa(y)
+			date := strconv.Itoa(m) + "/" + strconv.Itoa(d) + "/" + strconv.Itoa(y)
 			wi.Release = date
 			wi.Future = gmi.CheckFuture()
 			if wi.Future {
