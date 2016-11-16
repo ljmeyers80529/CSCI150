@@ -75,10 +75,10 @@
                             <tbody>
                                 {{range $idx, $data := .Game}}
                                 <tr>
-                                    <td class="buttoncenter"><button class="btnInfoAdd" type="submit" name="cmdMID" value="{{$data.ID}}">Info</button></td>
+                                    <td class="buttoncenter"><button class="btnInfoAdd" type="submit" name="cmdGID" value="{{$data.ID}}">Info</button></td>
                                     <td>{{$data.Title}}</td>
                                     <td>{{$data.Rating}}</td>
-                                    {{if $log}}<td class="buttoncenter"><button class="btnInfoAdd" type="submit" name="cmdMAdd" value="{{$data.ID}}">Add</button></td>{{end}}
+                                    {{if $log}}<td class="buttoncenter"><button class="btnInfoAdd" type="submit" name="cmdGAdd" value="{{$data.ID}}">Add</button></td>{{end}}
                                 </tr>
                                 {{end}}
                             </tbody>

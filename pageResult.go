@@ -21,7 +21,14 @@ func pageResults(res http.ResponseWriter, req *http.Request) {
 	if req.Method == "POST" {
 		movieTvPost(ctx, res, req)
 		if webInformation.MovieTvGame.ID != 0 { // no detail, search.
-			http.Redirect(res, req, fmt.Sprintf("%s?srch=%s#moviemodal", req.URL.Path, search), http.StatusFound)
+			it := itemType(webInformation.MovieTvGame.ID)
+			if it == 0 {
+				http.Redirect(res, req, fmt.Sprintf("%s?srch=%s#moviemodal", req.URL.Path, search), http.StatusFound)
+			} else if it == 1 {
+				http.Redirect(res, req, fmt.Sprintf("%s?srch=%s#tvmodal", req.URL.Path, search), http.StatusFound)
+			} else {
+				http.Redirect(res, req, fmt.Sprintf("%s?srch=%s#gamemodal", req.URL.Path, search), http.StatusFound)
+			}
 		}
 
 	}

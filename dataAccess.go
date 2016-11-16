@@ -195,7 +195,7 @@ func toInt(req *http.Request, key string) (val int) {
 
 // set defaults.
 func setUserDefault() {
-	mtg := movieTvGameInformation{0, "", "", "", 0, 0, nil, 0, "", ""}
+	mtg := movieTvGameInformation{0, "", "", "", 0, 0, nil, 0, "", "", 0}
 	userInformation = userInformationType{"", "", "", "", -8, true, false, nil}
 	webInformation = webInformationType{&userInformation, nil, nil, nil, nil, mtg, nil}
 }
@@ -262,8 +262,16 @@ func movieTvPost(ctx context.Context, res http.ResponseWriter, req *http.Request
 	}
 
 	watchID = toInt(req, "cmdTAdd") // add to favorites / watch list.
-	if watchID != 0 && !duplicate(int32(watchID), 0) {
+	if watchID != 0 && !duplicate(int32(watchID), 1) {
 		w := watch{int32(watchID), 1}
+		userInformation.Watched = append(userInformation.Watched, w)
+		updateCookie(res, req)
+		WriteUserInformation(ctx, req) // write added item to datastore / memcache
+	}
+
+	watchID = toInt(req, "cmdGAdd") // add to favorites / watch list.
+	if watchID != 0 && !duplicate(int32(watchID), 2) {
+		w := watch{int32(watchID), 2}
 		userInformation.Watched = append(userInformation.Watched, w)
 		updateCookie(res, req)
 		WriteUserInformation(ctx, req) // write added item to datastore / memcache
@@ -276,6 +284,11 @@ func movieTvPost(ctx context.Context, res http.ResponseWriter, req *http.Request
 	infoID = toInt(req, "cmdTID")
 	if infoID != 0 {
 		tvInfo(ctx, infoID)
+	}
+	i := req.FormValue("cmdGID")
+	infoID = toInt(req, "cmdGID")
+	if infoID != 0 {
+		gameInfo(ctx, infoID, i)
 	}
 	executeSearch(res, req)
 }
@@ -306,6 +319,7 @@ func gameInfo(ctx context.Context, info int, i string) {
 	game := gm[0]
 
 	webInformation.MovieTvGame.ID = info
+	webInformation.MovieTvGame.mtgType = 2
 	webInformation.MovieTvGame.Description = game.Summary
 	if game.FirstRelease != 0 {
 		y, m, d := game.GetDate()
@@ -336,6 +350,7 @@ func movieInfo(ctx context.Context, movieID int) {
 	// trail, _ := movieAPI.GetMovieVideos(ctx, info, nil)
 
 	webInformation.MovieTvGame.ID = movieID
+	webInformation.MovieTvGame.mtgType = 0
 	webInformation.MovieTvGame.Description = mvi.Overview
 	if mvi.ReleaseDate != "" {
 		webInformation.MovieTvGame.ReleaseDate = mvi.ReleaseDate
@@ -364,6 +379,7 @@ func tvInfo(ctx context.Context, tvID int) {
 	burl, _ := movieAPI.GetConfiguration(ctx)
 	tvi, _ := movieAPI.GetTvInfo(ctx, tvID, nil)
 	webInformation.MovieTvGame.ID = tvID
+	webInformation.MovieTvGame.mtgType = 1
 	webInformation.MovieTvGame.Image = fmt.Sprintf("%s%s%s", burl.Images.BaseURL, burl.Images.PosterSizes[1], tvi.PosterPath)
 	webInformation.MovieTvGame.Description = tvi.Overview
 	webInformation.MovieTvGame.TVSeasons = tvi.NumberOfSeasons

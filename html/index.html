@@ -24,40 +24,50 @@
                 <img src="../img/diningPhilo.svg">
             </figure>
         </div>
-            <center>
-        <form method="POST">
-           <div id="mass">
+        <center>
+            <form method="POST">
+                <div id="mass">
                     <div class="SearchBar">
-                    <input id="s" type="text" name="search" placeholder="Search...">
-                    <button class="specify" name="cmdSearch" value="movies_tv">Search</button>
+                        <input id="s" type="text" name="search" placeholder="Search...">
+                        <button class="specify" name="cmdSearch" value="movies_tv">Search</button>
                     </div>
-            </center>
-            {{if .User.LoggedIn}}
-            <center>
-                {{if .Watched}}
-                <table style="font-size: 1.25rem">
-                    <thead style="font-size: 1rem">
-                        <td><text class="detail">Detail</text></td>
-                        <td><text class="detail">Show Title</text></td>
-                        <td><text class="detail">Rating</text></td>
-                        <td><text class="detail">M</text></td>
-                        <td><text class="detail">T</text></td>
-                        <td><text class="detail">G</text></td>
-                        <td style="width: 100px"><text class="detail">Release</text></td>
-                        <td></td>
-                    </thead>
-                    <tbody>
-                        {{$tz := .User.Timezone}}
-                        {{range $idx, $data := .Watched}}
-                        <tr>
-                            <td class="buttoncenter"><button class="btnInfoAdd" type="submit" name="cmdID" value="{{$data.ID}}">Info</button></td>
-                            <td>{{$data.Title}}</td>
-                            <td>{{$data.Rating}}</td>
-                            <td><input class="buttoncenter" type="checkbox" disabled {{if $data.Movie}}checked{{end}}></td>
-                            <td><input class="buttoncenter" type="checkbox" disabled {{if $data.TV}}checked{{end}}></td>
-                            <td><input class="buttoncenter" type="checkbox" disabled {{if $data.Game}}checked{{end}}></td>
+                    {{if .User.LoggedIn}} {{if .Watched}}
+                    <table style="font-size: 1.25rem">
+                        <thead style="font-size: 1rem">
                             <td>
-                                {{if $data.Future}}
+                                <text class="detail">Detail</text>
+                            </td>
+                            <td>
+                                <text class="detail">Show Title</text>
+                            </td>
+                            <td>
+                                <text class="detail">Rating</text>
+                            </td>
+                            <td>
+                                <text class="detail">M</text>
+                            </td>
+                            <td>
+                                <text class="detail">T</text>
+                            </td>
+                            <td>
+                                <text class="detail">G</text>
+                            </td>
+                            <td style="width: 100px">
+                                <text class="detail">Release</text>
+                            </td>
+                            <td></td>
+                        </thead>
+                        <tbody>
+                            {{$tz := .User.Timezone}} {{range $idx, $data := .Watched}}
+                            <tr>
+                                <td class="buttoncenter"><button class="btnInfoAdd" type="submit" name="cmdID" value="{{$data.ID}}">Info</button></td>
+                                <td>{{$data.Title}}</td>
+                                <td>{{$data.Rating}}</td>
+                                <td><input class="buttoncenter" type="checkbox" disabled {{if $data.Movie}}checked{{end}}></td>
+                                <td><input class="buttoncenter" type="checkbox" disabled {{if $data.TV}}checked{{end}}></td>
+                                <td><input class="buttoncenter" type="checkbox" disabled {{if $data.Game}}checked{{end}}></td>
+                                <td>
+                                    {{if $data.Future}}
                                     <script type="application/javascript">
                                     var clk = new Countdown({year: {{$data.Year}},
 	            					month: {{$data.Month}},
@@ -70,61 +80,57 @@
  		    				        height:30,  
 				    		        style: "flip"
     			       			    });
-                                    </script>
-                                {{else}}
-                                {{$data.Release}}
-                                {{end}}
-                            </td>
-                            <td class="buttoncenter"><button class="btnRemove" type="submit" name="cmdRM" value="{{or $idx 4096}}">Remove</button></td>
-                        </tr>
-                        {{end}}
-                    </tbody>
-                </table>
-                {{end}}
-            {{end}}
+                                    </script> {{else}} {{$data.Release}} {{end}}
+                                </td>
+                                <td class="buttoncenter"><button class="btnRemove" type="submit" name="cmdRM" value="{{or $idx 4096}}">Remove</button></td>
+                            </tr>
+                            {{end}}
+                        </tbody>
+                    </table>
+                    {{end}} {{end}}
+                </div>
+
+                <div id="moviemodal" class="modalDialog">
+                    <div>
+                        <a href="#close" title="Close" class="close">X</a>
+                        <img class="poster" src="{{.MovieTvGame.Image}}">
+                        <div class="movieDetailMsg">
+                            <h6>{{.MovieTvGame.Description}}</h6>
+                            <h6>Genres:{{range $idx, $g := .MovieTvGame.Genres}}&nbsp{{$g}}&nbsp{{end}}</h6>
+                            <h5><a href={{.MovieTvGame.Youtube}} target="_blank">Trailer</a></h5>
+                            <h6>Release Date: {{.MovieTvGame.ReleaseDate}}</h6>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="tvmodal" class="modalDialog">
+                    <div>
+                        <a href="#close" title="Close" class="close">X</a>
+                        <img class="poster" src="{{.MovieTvGame.Image}}">
+                        <div class="movieDetailMsg">
+                            <h6>{{.MovieTvGame.Description}}</h6>
+                            <h6>{{.MovieTvGame.TVEpisodes}} Episodes over {{.MovieTvGame.TVSeasons}} Seasons.</h6>
+                            <h6>Genres:{{range $idx, $g := .MovieTvGame.Genres}}&nbsp{{$g}}&nbsp{{end}}</h6>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="gamemodal" class="modalDialog">
+                    <div>
+                        <center>
+                            <a href="#close" title="Close" class="close">X</a>
+                            <img class="poster" src="{{.MovieTvGame.Image}}">
+                            <div class="movieDetailMsg">
+                                <h6>{{.MovieTvGame.Description}}</h6>
+                                <h6>Genres:{{range $idx, $g := .MovieTvGame.Genres}}&nbsp{{$g}}&nbsp{{end}}</h6>
+                                <h6>Release Date: {{.MovieTvGame.ReleaseDate}}</h6>
+                            </div>
+                        </center>
+                    </div>
+                </div>
     </div>
-                    <div id="tvmodal" class="modalDialog">
-                        <div>
-                            <a href="#close" title="Close" class="close">X</a>
-                            <img class="poster" src="{{.MovieTvGame.Image}}">
-                            <div class="movieDetailMsg">
-                                <h6>{{.MovieTvGame.Description}}</h6>
-                                <h6>{{.MovieTvGame.TVEpisodes}} Episodes over {{.MovieTvGame.TVSeasons}} Seasons.</h6>
-                                <h6>Genres:{{range $idx, $g := .MovieTvGame.Genres}}&nbsp{{$g}}&nbsp{{end}}</h6>
-                            </div>
-                       </div>
-                    </div>
-                    
-                    <div id="moviemodal" class="modalDialog">
-                        <div>
-                            <a href="#close" title="Close" class="close">X</a>
-                            <img class="poster" src="{{.MovieTvGame.Image}}">
-                            <div class="movieDetailMsg">
-                                <h6>{{.MovieTvGame.Description}}</h6>
-                                <h6>Genres:{{range $idx, $g := .MovieTvGame.Genres}}&nbsp{{$g}}&nbsp{{end}}</h6>
-                                <h5><a href={{.MovieTvGame.Youtube}} target="_blank">Trailer</a></h5>
-                                <h6>Release Date: {{.MovieTvGame.ReleaseDate}}</h6>
-                            </div>
-                       </div>
-                    </div>
-
-
-                     <div id="gamemodal" class="modalDialog">
-                        <div>
-                            <center>
-                            <a href="#close" title="Close" class="close">X</a>
-                            <img class="poster" src="{{.MovieTvGame.Image}}">
-                            <div class="movieDetailMsg">
-                                <h6>{{.MovieTvGame.Description}}</h6>
-                                <h6>Genres:{{range $idx, $g := .MovieTvGame.Genres}}&nbsp{{$g}}&nbsp{{end}}</h6>
-                                <h6>Release Date: {{.MovieTvGame.ReleaseDate}}</h6>
-                            </div>
-                            </center>
-                       </div>
-                    </div>
-            </div>
     </form>
-            </center>
+    </center>
 
 </body>
 

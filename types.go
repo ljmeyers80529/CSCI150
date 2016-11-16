@@ -26,6 +26,7 @@ type movieTvGameInformation struct {
 	UID                             int
 	Search                          string
 	Youtube                         string
+	mtgType							int
 }
 
 // user's favorites / watch list.
