@@ -69,7 +69,7 @@ func topRatedGames(ctx context.Context) topPopRated {
 	for _, val := range list {
 		rated.ID = val.ID
 		rated.Title = val.Name
-		rated.Rating = float32(setPrecision(val.Rating, 1))
+		rated.Rating = round(val.Rating)
 		tops = append(tops, rated)
 	}
 	return tops
@@ -100,7 +100,7 @@ func popularGames(ctx context.Context) topPopRated {
 	for _, val := range list {
 		rated.ID = val.ID
 		rated.Title = val.Name
-		rated.Rating = float32(setPrecision(val.Rating, 1))
+		rated.Rating = round(val.Rating)
 		tops = append(tops, rated)
 	}
 	return tops
