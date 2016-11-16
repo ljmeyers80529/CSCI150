@@ -2,7 +2,8 @@
 <html lang="en">
 
 <head>
-    <title>Release.it - Games</title>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet'  type='text/css'>
+    <title>release.it - Games</title>
     <link rel="stylesheet" type="text/css" href="../css/main.css">
     <link rel="stylesheet" type="text/css" href="../css/movies.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,7 +14,7 @@
     {{template "header" .}}
 
     <center>
-    <img src="../img/diningPhilo.svg" id="huns" width="200" height="200">
+    <img src="../img/clock.svg" id="huns" width="200" height="200">
 
         <form method="POST">
             <div id="mass">
@@ -34,7 +35,7 @@
                             
                             <td><text class="detail">Game Title</text></td>
                             <td><text class="detail">Remaining Time</text></td>
-                            {{if $log}}<td style="width: 60px"><text class="detail">Watch / Fav</text></td>{{end}}
+                            {{if $log}}<td style="width: 60px"><text class="detail">Favorite</text></td>{{end}}
                         </thead>
                         <tbody>
                             {{$tz := .User.Timezone}}
@@ -71,7 +72,7 @@
                                 <td><text class="detail">Detail</text></td>
                                 <td><text class="detail">Game Title</text></td>
                                 <td><text class="detail">Rating</text></td>
-                                {{if $log}}<td style="width: 60px"><text class="detail">Watch / Fav</text></td>{{end}}
+                                {{if $log}}<td style="width: 60px"><text class="detail">Favorite</text></td>{{end}}
                             </thead>
                             <tbody>
                                 {{range $idx, $data := .Top}}
@@ -94,7 +95,7 @@
                                 <td><text class="detail">Detail</text></td>
                                 <td><text class="detail">Game Title</text></td>
                                 <td><text class="detail">Rating</text></td>
-                                {{if $log}}<td style="width: 60px"><text class="detail">Watch / Fav</text></td>{{end}}
+                                {{if $log}}<td style="width: 60px"><text class="detail">Favorite</text></td>{{end}}
                             </thead>
                             <tbody>
                                 {{range $idx, $data := .Pop}}

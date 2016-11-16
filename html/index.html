@@ -2,7 +2,8 @@
 <html lang="en">
 
 <head>
-    <title>Release.it</title>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet'  type='text/css'>
+    <title>release.it</title>
     <link rel="stylesheet" type="text/css" href="../css/main.css">
     <link rel="stylesheet" type="text/css" href="../css/movies.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,7 +22,7 @@
     <div id="atf">
         <div id="MainLogo">
             <figure>
-                <img src="../img/diningPhilo.svg">
+                <img src="../img/clock.svg">
             </figure>
         </div>
         <center>
@@ -103,6 +104,7 @@
                     </div>
                 </div>
 
+<<<<<<< HEAD
                 <div id="tvmodal" class="modalDialog">
                     <div>
                         <a href="#close" title="Close" class="close">X</a>
@@ -118,6 +120,12 @@
                 <div id="gamemodal" class="modalDialog">
                     <div>
                         <center>
+=======
+<!--
+                     <div id="gamemodal" class="modalDialog">
+                        <div>
+                            <center>
+>>>>>>> d491cd3c6cc98638c4509ac05ebd6b7714dea234
                             <a href="#close" title="Close" class="close">X</a>
                             <img class="poster" src="{{.MovieTvGame.Image}}">
                             <div class="movieDetailMsg">
@@ -127,8 +135,24 @@
                             </div>
                         </center>
                     </div>
+<<<<<<< HEAD
                 </div>
     </div>
+=======
+                    -->
+                    <div id="gamemodal" class="modalDialog">
+                        <div>
+                            <a href="#close" title="Close" class="close">X</a>
+                            <img class="poster" src="{{.MovieTvGame.Image}}">
+                            <div class="movieDetailMsg">
+                                <h6>{{.MovieTvGame.Description}}</h6>
+                                <h6>Genres:{{range $idx, $g := .MovieTvGame.Genres}}&nbsp{{$g}}&nbsp{{end}}</h6>
+                                <h6>Release Date: {{.MovieTvGame.ReleaseDate}}
+                            </div>
+                       </div>
+                    </div>
+            </div>
+>>>>>>> d491cd3c6cc98638c4509ac05ebd6b7714dea234
     </form>
     </center>
 

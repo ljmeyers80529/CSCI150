@@ -6,6 +6,7 @@ html, body, #atf, #btf, #nav{
     border:0;
     height: 100%;
     /*  box-sizing: border-box*/;
+    font-family: 'Open Sans', sans-serif;
 }
 
 
@@ -42,13 +43,6 @@ a{
     font-family: fantasy;
     width:50%;
 }
-
-
-
-#submit{
-    font-family: fantasy ;
-}
-
 
 #nav {
     /*position: fixed;*/
