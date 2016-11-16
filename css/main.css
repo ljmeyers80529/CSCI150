@@ -1,4 +1,3 @@
-
 text.detail { color:#FFFFFF }
 
 html, body, #atf, #btf, #nav{
@@ -10,7 +9,6 @@ html, body, #atf, #btf, #nav{
     font-family: 'Open Sans', sans-serif;
 }
 
-
 body{
     background-color: white;
 }
@@ -18,8 +16,6 @@ body{
 a{
     color: white;
 }
-
-
 
 #MainLogo img{
     position: relative;
@@ -30,8 +26,6 @@ a{
     bottom: 0;
 
 }
-
-
 
 #s{
     width:400px;
