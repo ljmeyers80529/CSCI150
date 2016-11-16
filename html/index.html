@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Release.it</title>
+    <title>release.it</title>
     <link rel="stylesheet" type="text/css" href="../css/main.css">
     <link rel="stylesheet" type="text/css" href="../css/movies.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -108,7 +108,7 @@
                        </div>
                     </div>
 
-
+<!--
                      <div id="gamemodal" class="modalDialog">
                         <div>
                             <center>
@@ -120,6 +120,18 @@
                                 <h6>Release Date: {{.MovieTvGame.ReleaseDate}}</h6>
                             </div>
                             </center>
+                       </div>
+                    </div>
+                    -->
+                    <div id="gamemodal" class="modalDialog">
+                        <div>
+                            <a href="#close" title="Close" class="close">X</a>
+                            <img class="poster" src="{{.MovieTvGame.Image}}">
+                            <div class="movieDetailMsg">
+                                <h6>{{.MovieTvGame.Description}}</h6>
+                                <h6>Genres:{{range $idx, $g := .MovieTvGame.Genres}}&nbsp{{$g}}&nbsp{{end}}</h6>
+                                <h6>Release Date: {{.MovieTvGame.ReleaseDate}}
+                            </div>
                        </div>
                     </div>
             </div>
