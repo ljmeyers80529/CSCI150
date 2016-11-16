@@ -196,7 +196,7 @@ func toInt(req *http.Request, key string) (val int) {
 // set defaults.
 func setUserDefault() {
 	mtg := movieTvGameInformation{0, "", "", "", 0, 0, nil, 0, "", "", 0}
-	userInformation = userInformationType{"", "", "", "", -8, true, false, nil}
+	userInformation = userInformationType{"", "", "", "", -7, true, false, nil}
 	webInformation = webInformationType{&userInformation, nil, nil, nil, nil, mtg, nil}
 }
 
