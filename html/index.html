@@ -28,11 +28,11 @@
         </div>
         <center>
             <form method="POST">
-                <div id="mass">
                     <div class="SearchBar">
                         <input id="s" type="text" name="search" placeholder="Search...">
                         <button class="specify" name="cmdSearch" value="movies_tv">Search</button>
                     </div>
+                <div id="mass">
                     {{if .User.LoggedIn}} {{if .Watched}}
                     <table style="font-size: 1.25rem">
                         <thead style="font-size: 1rem">
