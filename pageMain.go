@@ -94,7 +94,7 @@ func popWatch(ctx context.Context) {
 			gmi := gms[0]
 			wi.Game = true
 			wi.Title = gmi.Name
-			wi.Rating = float32(setPrecision(gmi.Rating, 1))
+			wi.Rating = round(gmi.Rating)
 			y, m, d := gmi.GetDate()
 			date := strconv.Itoa(m) + "-" + strconv.Itoa(d) + "-" + strconv.Itoa(y)
 			wi.Release = date

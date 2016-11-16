@@ -397,11 +397,18 @@ func tvInfo(ctx context.Context, tvID int) {
 	webInformation.MovieTvGame.Genres = g
 }
 
-func round(num float64) int {
+// roundFloat is an intermediate function that rounds a float64 into an int
+func roundFloat(num float64) int {
 	return int(num + math.Copysign(0.5, num))
 }
 
+// setPrecision is an intermediate function that formats a float64 to a specific number of significat digits
 func setPrecision(num float64, prec int) float64 {
 	output := math.Pow(10, float64(prec))
-	return float64(round(num*output)) / output
+	return float64(roundFloat(num*output)) / output
+}
+
+// round is a function that takes a float64 and rounds it down to a number out of 10 with only 1 significant digit
+func round(num float64) float32 {
+	return float32(setPrecision((num / 10), 1))
 }
