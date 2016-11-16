@@ -88,7 +88,7 @@ func popWatch(ctx context.Context) {
 			wi.Future = false
 			wi.Title = tvi.Name
 			wi.Rating = tvi.VoteAverage
-			wi.Release = ""
+			wi.Release = tvi.FirstAirDate
 		case 2:
 			gms, _ := igdbgo.GetGames(ctx, "", 1, 0, 0, strconv.Itoa(wi.ID))
 			gmi := gms[0]

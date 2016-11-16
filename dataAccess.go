@@ -309,6 +309,7 @@ func gamePost(ctx context.Context, res http.ResponseWriter, req *http.Request) {
 		updateCookie(res, req)
 		WriteUserInformation(ctx, req)
 	}
+	executeSearch(res, req)
 }
 
 func gameInfo(ctx context.Context, info int, i string) {
@@ -388,6 +389,8 @@ func tvInfo(ctx context.Context, tvID int) {
 	webInformation.MovieTvGame.Description = tvi.Overview
 	webInformation.MovieTvGame.TVSeasons = tvi.NumberOfSeasons
 	webInformation.MovieTvGame.TVEpisodes = tvi.NumberOfEpisodes
+	webInformation.MovieTvGame.ReleaseDate = tvi.FirstAirDate
+	log.Infof(ctx, "Air Date: %s", tvi.FirstAirDate)
 	for _, gn := range tvi.Genres {
 		g = append(g, gn.Name)
 	}
