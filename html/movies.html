@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+    <link rel="icon" type="image/ico" sizes="32x32" href="../images/favicon.ico">
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet'  type='text/css'>
     <title>release.it - Movies</title>
     <link rel="stylesheet" type="text/css" href="../css/main.css">
@@ -95,7 +96,8 @@
                                     <tr>
                                         <td class="buttoncenter"><button class="btnInfoAdd" type="submit" name="cmdID" value="{{$data.ID}}">Info</button></td>
                                         <td>{{$data.Title}}</td>
-                                        <td>{{$data.Rating}}</td>
+                                        {{if $data.Rating}}<td>{{$data.Rating}}</td>{{else}}
+                                        <td>N/A</td>{{end}}
                                         {{if $log}}
                                         <td class="buttoncenter"><button class="btnInfoAdd" type="submit" name="cmdAdd" value="{{$data.ID}}">Add</button></td>{{end}}
                                     </tr>
@@ -128,7 +130,8 @@
                                     <tr>
                                         <td class="buttoncenter"><button class="btnInfoAdd" type="submit" name="cmdID" value="{{$data.ID}}">Info</button></td>
                                         <td>{{$data.Title}}</td>
-                                        <td>{{$data.Rating}}</td>
+                                        {{if $data.Rating}}<td>{{$data.Rating}}</td>{{else}}
+                                        <td>N/A</td>{{end}}
                                         {{if $log}}
                                         <td class="buttoncenter"><button class="btnInfoAdd" type="submit" name="cmdAdd" value="{{$data.ID}}">Add</button></td>{{end}}
                                     </tr>

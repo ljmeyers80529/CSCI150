@@ -93,9 +93,8 @@ func popWatch(ctx context.Context) {
 			gms, _ := igdbgo.GetGames(ctx, "", 1, 0, 0, strconv.Itoa(wi.ID))
 			gmi := gms[0]
 			wi.Game = true
-			wi.Future = (true)
 			wi.Title = gmi.Name
-			wi.Rating = float32(gmi.Rating)
+			wi.Rating = float32(setPrecision(gmi.Rating, 1))
 			y, m, d := gmi.GetDate()
 			date := strconv.Itoa(m) + "-" + strconv.Itoa(d) + "-" + strconv.Itoa(y)
 			wi.Release = date
