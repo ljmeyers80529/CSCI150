@@ -39,8 +39,8 @@
                                     <tr>
                                         <td class="buttoncenter"><button class="btnInfoAdd" type="submit" name="cmdID" value="{{$data.ID}}">Info</button></td>
                                         <td>{{$data.Title}}</td>
-                                        {{if $data.Rating}}<td>{{$data.Rating}}</td>{{else}}
-                                        <td>N/A</td>{{end}}
+                                        {{if $data.Rating}}<td><center>{{$data.Rating}}</center></td>{{else}}
+                                        <td><center>N/A</center></td>{{end}}
                                         <td>{{$data.Release}}</td>
                                         {{if $log}}<td class="buttoncenter"><button class="btnInfoAdd" type="submit" name="cmdAdd" value="{{$data.ID}}">Add</button></td>{{end}}
                                     </tr>
@@ -63,8 +63,8 @@
                                     <tr>
                                         <td class="buttoncenter"><button class="btnInfoAdd" type="submit" name="cmdID" value="{{$data.ID}}">Info</button></td>
                                         <td>{{$data.Title}}</td>
-                                        {{if $data.Rating}}<td>{{$data.Rating}}</td>{{else}}
-                                        <td>N/A</td>{{end}}
+                                        {{if $data.Rating}}<td><center>{{$data.Rating}}</center></td>{{else}}
+                                        <td><center>N/A</center></td>{{end}}
                                         <td>{{$data.Release}}</td>
                                         {{if $log}}<td class="buttoncenter"><button class="btnInfoAdd" type="submit" name="cmdAdd" value="{{$data.ID}}">Add</button></td>{{end}}
                                     </tr>
