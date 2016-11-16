@@ -96,7 +96,7 @@
                                     <tr>
                                         <td class="buttoncenter"><button class="btnInfoAdd" type="submit" name="cmdID" value="{{$data.ID}}">Info</button></td>
                                         <td>{{$data.Title}}</td>
-                                        {{if $data.Rating}}<td><center>{{$data.Rating}}</center</td>{{else}}
+                                        {{if $data.Rating}}<td><center>{{$data.Rating}}</center></td>{{else}}
                                         <td>N/A</td>{{end}}
                                         {{if $log}}
                                         <td class="buttoncenter"><button class="btnInfoAdd" type="submit" name="cmdAdd" value="{{$data.ID}}">Add</button></td>{{end}}
@@ -129,8 +129,8 @@
                                     {{range $idx, $data := .Pop}}
                                     <tr>
                                         <td class="buttoncenter"><button class="btnInfoAdd" type="submit" name="cmdID" value="{{$data.ID}}">Info</button></td>
-                                        <td>{{$data.Title}}</td>
-                                        {{if $data.Rating}}<td><center>{{$data.Rating}}</center</td>{{else}}
+                                        <td><center>{{$data.Title}}</center></td>
+                                        {{if $data.Rating}}<td>{{$data.Rating}}</td>{{else}}
                                         <td>N/A</td>{{end}}
                                         {{if $log}}
                                         <td class="buttoncenter"><button class="btnInfoAdd" type="submit" name="cmdAdd" value="{{$data.ID}}">Add</button></td>{{end}}
