@@ -82,8 +82,8 @@
                             <tr>
                                 <td class="buttoncenter"><button class="btnInfoAdd" type="submit" name="cmdID" value="{{$data.ID}}">Info</button></td>
                                 <td>{{$data.Title}}</td>
-                                {{if $data.Rating}}<td>{{$data.Rating}}</td>{{else}}
-                                <td>N/A</td>{{end}}
+                                {{if $data.Rating}}<td><center>{{$data.Rating}}</center></td>{{else}}
+                                <td><center>N/A</center></td>{{end}}
                                 <td><input class="buttoncenter" type="checkbox" disabled {{if $data.Movie}}checked{{end}}></td>
                                 <td><input class="buttoncenter" type="checkbox" disabled {{if $data.TV}}checked{{end}}></td>
                                 <td><input class="buttoncenter" type="checkbox" disabled {{if $data.Game}}checked{{end}}></td>
@@ -101,7 +101,7 @@
  		    				        height:30,
 				    		        style: "flip"
     			       			    });
-                                    </script> {{else}} {{$data.Release}} {{end}}
+                                    </script> {{else}} <center> {{$data.Release}} </center> {{end}}
                                 </td>
                                 <td class="buttoncenter"><button class="btnRemove" type="submit" name="cmdRM" value="{{or $idx 4096}}">Remove</button></td>
                             </tr>
@@ -118,7 +118,7 @@
                         <div class="movieDetailMsg">
                             <h6>{{.MovieTvGame.Description}}</h6>
                             <h6>Genres:{{range $idx, $g := .MovieTvGame.Genres}}&nbsp{{$g}}&nbsp{{end}}</h6>
-                            <h5><a href={{.MovieTvGame.Youtube}} target="_blank">Trailer</a></h5>
+                            <h5>{{if .MovieTvGame.Youtube}}<a href={{.MovieTvGame.Youtube}} target="_blank">Trailer</a>{{else}}&nbsp{{end}}</h5>
                             <h6>Release Date: {{.MovieTvGame.ReleaseDate}}</h6>
                         </div>
                     </div>
@@ -143,6 +143,7 @@
                             <div class="movieDetailMsg">
                                 <h6>{{.MovieTvGame.Description}}</h6>
                                 <h6>Genres:{{range $idx, $g := .MovieTvGame.Genres}}&nbsp{{$g}}&nbsp{{end}}</h6>
+                                <h5>{{if .MovieTvGame.Youtube}}<a href={{.MovieTvGame.Youtube}} target="_blank">Trailer</a>{{else}}&nbsp{{end}}</h5>
                                 <h6>Release Date: {{.MovieTvGame.ReleaseDate}}
                             </div>
                        </div>

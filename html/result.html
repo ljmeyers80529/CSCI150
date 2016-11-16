@@ -36,8 +36,8 @@
                                 <tr>
                                     <td class="buttoncenter"><button class="btnInfoAdd" type="submit" name="cmdMID" value="{{$data.ID}}">Info</button></td>
                                     <td>{{$data.Title}}</td>
-                                    {{if $data.Rating}}<td>{{$data.Rating}}</td>{{else}}
-                                    <td>N/A</td>{{end}}
+                                    {{if $data.Rating}}<td><center>{{$data.Rating}}</center></td>{{else}}
+                                        <td><center>N/A</center></td>{{end}}
                                     {{if $log}}<td class="buttoncenter"><button class="btnInfoAdd" type="submit" name="cmdMAdd" value="{{$data.ID}}">Add</button></td>{{end}}
                                 </tr>
                                 {{end}}
@@ -59,8 +59,8 @@
                                 <tr>
                                     <td class="buttoncenter"><button class="btnInfoAdd" type="submit" name="cmdTID" value="{{$data.ID}}">Info</button></td>
                                     <td>{{$data.Title}}</td>
-                                    {{if $data.Rating}}<td>{{$data.Rating}}</td>{{else}}
-                                    <td>N/A</td>{{end}}
+                                    {{if $data.Rating}}<td><center>{{$data.Rating}}</center></td>{{else}}
+                                        <td><center>N/A</center></td>{{end}}
                                     {{if $log}}<td class="buttoncenter"><button class="btnInfoAdd" type="submit" name="cmdTAdd" value="{{$data.ID}}">Add</button></td>{{end}}
                                 </tr>
                                 {{end}}
@@ -81,8 +81,8 @@
                                 <tr>
                                     <td class="buttoncenter"><button class="btnInfoAdd" type="submit" name="cmdGID" value="{{$data.ID}}">Info</button></td>
                                     <td>{{$data.Title}}</td>
-                                    {{if $data.Rating}}<td>{{$data.Rating}}</td>{{else}}
-                                    <td>N/A</td>{{end}}
+                                    {{if $data.Rating}}<td><center>{{$data.Rating}}</center></td>{{else}}
+                                        <td><center>N/A</center></td>{{end}}
                                     {{if $log}}<td class="buttoncenter"><button class="btnInfoAdd" type="submit" name="cmdGAdd" value="{{$data.ID}}">Add</button></td>{{end}}
                                 </tr>
                                 {{end}}
@@ -98,7 +98,7 @@
                             <div class="movieDetailMsg">
                                 <h6>{{.MovieTvGame.Description}}</h6>
                                 <h6>Release Date: {{.MovieTvGame.ReleaseDate}}</h6>
-                                <h5><a href={{.MovieTvGame.Youtube}} target="_blank">Trailer</a></h5>
+                            <h5>{{if .MovieTvGame.Youtube}}<a href={{.MovieTvGame.Youtube}} target="_blank">Trailer</a>{{else}}&nbsp{{end}}</h5>
                                 <h6>Genres:{{range $idx, $g := .MovieTvGame.Genres}}&nbsp{{$g}}&nbsp{{end}}</h6>
                             </div>
                        </div>
@@ -123,7 +123,7 @@
                             <div class="movieDetailMsg">
                                 <h6>{{.MovieTvGame.Description}}</h6>
                                 <h6>Release Date: {{.MovieTvGame.ReleaseDate}}</h6>
-                                <h5><a href={{.MovieTvGame.Youtube}} target="_blank">Trailer</a><h5>
+                            <h5>{{if .MovieTvGame.Youtube}}<a href={{.MovieTvGame.Youtube}} target="_blank">Trailer</a>{{else}}&nbsp{{end}}</h5>
                                 <h6>Genres:{{range $idx, $g := .MovieTvGame.Genres}}&nbsp{{$g}}&nbsp{{end}}</h6>
                             </div>
                        </div>
