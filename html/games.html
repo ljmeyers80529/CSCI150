@@ -35,7 +35,7 @@
                             
                             <td><text class="detail">Game Title</text></td>
                             <td><text class="detail">Remaining Time</text></td>
-                            {{if $log}}<td style="width: 60px"><text class="detail">Watch / Fav</text></td>{{end}}
+                            {{if $log}}<td style="width: 60px"><text class="detail">Favorite</text></td>{{end}}
                         </thead>
                         <tbody>
                             {{$tz := .User.Timezone}}
@@ -72,7 +72,7 @@
                                 <td><text class="detail">Detail</text></td>
                                 <td><text class="detail">Game Title</text></td>
                                 <td><text class="detail">Rating</text></td>
-                                {{if $log}}<td style="width: 60px"><text class="detail">Watch / Fav</text></td>{{end}}
+                                {{if $log}}<td style="width: 60px"><text class="detail">Favorite</text></td>{{end}}
                             </thead>
                             <tbody>
                                 {{range $idx, $data := .Top}}
@@ -95,7 +95,7 @@
                                 <td><text class="detail">Detail</text></td>
                                 <td><text class="detail">Game Title</text></td>
                                 <td><text class="detail">Rating</text></td>
-                                {{if $log}}<td style="width: 60px"><text class="detail">Watch / Fav</text></td>{{end}}
+                                {{if $log}}<td style="width: 60px"><text class="detail">Favorite</text></td>{{end}}
                             </thead>
                             <tbody>
                                 {{range $idx, $data := .Pop}}
