@@ -95,15 +95,18 @@ body{
 }
 
 .form-login {
-    background-color: crimson;
-    padding-top: 10px;
-    padding-bottom: 20px;
-    padding-left: 20px;
-    padding-right: 20px;
-    border-radius: 15px;
-    border-color:#d2d2d2;
-    border-width: 5px;
-    box-shadow:0 1px 0 #cfcfcf;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width:50%;
+  height: auto;
+  font-size: 16px;
+  background-image: url('searchicon.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  /* padding: 12px 20px 12px 40px;*/
+  -webkit-transition: width 0.4s ease-in-out;
+  transition: width 0.4s ease-in-out;
 }
 
 h4 {
