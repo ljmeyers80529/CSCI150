@@ -3,7 +3,6 @@ package csci150
 import (
 	"net/http"
 	"sort"
-	"strings"
 
 	"fmt"
 
@@ -37,9 +36,7 @@ func topRatedTV(ctx context.Context) topPopRated {
 		rated.Title = val.Name
 		rated.ID = val.ID
 		rated.Rating = float32(setPrecision(float64(val.VoteAverage), 1))
-		s := strings.Split(val.FirstAirDate, "-")
-		rated.Release = s[1] + "-" + s[2] + "-" + s[0]
-		//rated.Release = val.FirstAirDate
+		rated.Release = formatDate(val.FirstAirDate)
 		tops = append(tops, rated)
 	}
 	return tops
@@ -55,9 +52,7 @@ func popularTV(ctx context.Context) topPopRated {
 		rated.Title = val.Name
 		rated.ID = val.ID
 		rated.Rating = float32(setPrecision(float64(val.VoteAverage), 1))
-		s := strings.Split(val.FirstAirDate, "-")
-		rated.Release = s[1] + "-" + s[2] + "-" + s[0]
-		//rated.Release = val.FirstAirDate
+		rated.Release = formatDate(val.FirstAirDate)
 		tops = append(tops, rated)
 	}
 	return tops
