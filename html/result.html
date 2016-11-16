@@ -36,7 +36,8 @@
                                 <tr>
                                     <td class="buttoncenter"><button class="btnInfoAdd" type="submit" name="cmdMID" value="{{$data.ID}}">Info</button></td>
                                     <td>{{$data.Title}}</td>
-                                    <td>{{$data.Rating}}</td>
+                                    {{if $data.Rating}}<td>{{$data.Rating}}</td>{{else}}
+                                    <td>N/A</td>{{end}}
                                     {{if $log}}<td class="buttoncenter"><button class="btnInfoAdd" type="submit" name="cmdMAdd" value="{{$data.ID}}">Add</button></td>{{end}}
                                 </tr>
                                 {{end}}
@@ -58,7 +59,8 @@
                                 <tr>
                                     <td class="buttoncenter"><button class="btnInfoAdd" type="submit" name="cmdTID" value="{{$data.ID}}">Info</button></td>
                                     <td>{{$data.Title}}</td>
-                                    <td>{{$data.Rating}}</td>
+                                    {{if $data.Rating}}<td>{{$data.Rating}}</td>{{else}}
+                                    <td>N/A</td>{{end}}
                                     {{if $log}}<td class="buttoncenter"><button class="btnInfoAdd" type="submit" name="cmdTAdd" value="{{$data.ID}}">Add</button></td>{{end}}
                                 </tr>
                                 {{end}}
@@ -79,7 +81,8 @@
                                 <tr>
                                     <td class="buttoncenter"><button class="btnInfoAdd" type="submit" name="cmdGID" value="{{$data.ID}}">Info</button></td>
                                     <td>{{$data.Title}}</td>
-                                    <td>{{$data.Rating}}</td>
+                                    {{if $data.Rating}}<td>{{$data.Rating}}</td>{{else}}
+                                    <td>N/A</td>{{end}}
                                     {{if $log}}<td class="buttoncenter"><button class="btnInfoAdd" type="submit" name="cmdGAdd" value="{{$data.ID}}">Add</button></td>{{end}}
                                 </tr>
                                 {{end}}

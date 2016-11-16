@@ -78,7 +78,8 @@
                             <tr>
                                 <td class="buttoncenter"><button class="btnInfoAdd" type="submit" name="cmdID" value="{{$data.ID}}">Info</button></td>
                                 <td>{{$data.Title}}</td>
-                                <td>{{$data.Rating}}</td>
+                                {{if $data.Rating}}<td>{{$data.Rating}}</td>{{else}}
+                                <td>N/A</td>{{end}}
                                 <td><input class="buttoncenter" type="checkbox" disabled {{if $data.Movie}}checked{{end}}></td>
                                 <td><input class="buttoncenter" type="checkbox" disabled {{if $data.TV}}checked{{end}}></td>
                                 <td><input class="buttoncenter" type="checkbox" disabled {{if $data.Game}}checked{{end}}></td>
