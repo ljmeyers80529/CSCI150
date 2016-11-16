@@ -27,10 +27,10 @@
                             <h2>Top Rated</h2>
                             <table style="font-size: 1.25rem">
                                 <thead style="font-size: 1rem">
-                                    <td><text class="detail">Detail</text></td>
-                                    <td><text class="detail">Show Title</text></td>
-                                    <td><text class="detail">Rating</text></td>
-                                    {{if $log}}<td style="width: 60px"><text class="detail">Favorite</text></td>{{end}}
+                                    <td><center><text class="detail">Detail</text></center></td>
+                                    <td><center><text class="detail">Title</text></center></td>
+                                    <td><center><text class="detail">Rating</text><center></td>
+                                        {{if $log}}<td style="width: 60px"><center><text class="detail">Favorite</text></center></td>{{end}}
                                 </thead>
                                 <tbody>
                                     {{range $idx, $data := .Top}}
@@ -48,10 +48,10 @@
                             <h2>Popular</h2>
                             <table style="font-size: 1.25rem">
                                 <thead style="font-size: 1rem">
-                                    <td><text class="detail">Detail</text></td>
-                                    <td><text class="detail">Show Title</text></td>
-                                    <td><text class="detail">Rating</text></td>
-                                    {{if $log}}<td style="width: 60px"><text class="detail">Favorite</text></td>{{end}}
+                                    <td><center><text class="detail">Detail</text></center></td>
+                                    <td><center><text class="detail">Title</text></center></td>
+                                    <td><center><text class="detail">Rating</text></center></td>
+                                    {{if $log}}<td style="width: 60px"><center><text class="detail">Favorite</text></center></td>{{end}}
                                 </thead>
                                 <tbody>
                                     {{range $idx, $data := .Pop}}

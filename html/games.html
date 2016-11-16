@@ -31,11 +31,11 @@
                     <table style="font-size: 1.25rem">
 
                         <thead>
-                            <td><text class="detail">Detail</text></td>
+                            <td><center><text class="detail">Detail</text></center></td>
 
-                            <td><text class="detail">Game Title</text></td>
-                            <td><text class="detail">Remaining Time</text></td>
-                            {{if $log}}<td style="width: 60px"><text class="detail">Favorite</text></td>{{end}}
+                            <td><center><text class="detail">Title</text></center></td>
+                            <td><center><text class="detail">Countdown</text></center></td>
+                            {{if $log}}<td style="width: 60px"><center><text class="detail">Favorite</text></center></td>{{end}}
                         </thead>
                         <tbody>
                             {{$tz := .User.Timezone}}
@@ -69,10 +69,10 @@
                  			<h2 class= "title2">Top Rated</h2>
                         <table style="font-size: 1.25rem">
                             <thead>
-                                <td><text class="detail">Detail</text></td>
-                                <td><text class="detail">Game Title</text></td>
-                                <td><text class="detail">Rating</text></td>
-                                {{if $log}}<td style="width: 60px"><text class="detail">Favorite</text></td>{{end}}
+                                <td><center><text class="detail">Detail</text></center></td>
+                                <td><center><text class="detail">Title</text></center></td>
+                                <td><center><text class="detail">Rating</text></center></td>
+                                {{if $log}}<td style="width: 60px"><center><text class="detail">Favorite</text></center></td>{{end}}
                             </thead>
                             <tbody>
                                 {{range $idx, $data := .Top}}
@@ -92,10 +92,10 @@
                          <h2 class = "title3">Popular</h2>
                         <table style="font-size: 1.25rem">
                             <thead>
-                                <td><text class="detail">Detail</text></td>
-                                <td><text class="detail">Game Title</text></td>
-                                <td><text class="detail">Rating</text></td>
-                                {{if $log}}<td style="width: 60px"><text class="detail">Favorite</text></td>{{end}}
+                                <td><center><text class="detail">Detail</text></center></td>
+                                <td><center><text class="detail">Title</text></center></td>
+                                <td><center><text class="detail">Rating</text></center></td>
+                                {{if $log}}<td style="width: 60px"><center><text class="detail">Favorite</text></center></td>{{end}}
                             </thead>
                             <tbody>
                                 {{range $idx, $data := .Pop}}
