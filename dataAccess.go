@@ -309,6 +309,7 @@ func gamePost(ctx context.Context, res http.ResponseWriter, req *http.Request) {
 		updateCookie(res, req)
 		WriteUserInformation(ctx, req)
 	}
+	executeSearch(res, req)
 }
 
 func gameInfo(ctx context.Context, info int, i string) {
