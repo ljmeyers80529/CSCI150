@@ -14,8 +14,8 @@ func init() {
 	configureResourceLocation("images", "js/images")
 	configureResourceLocation("js", "js")
 	setUserDefault()
-	http.Handle("/favicon.ico", http.NotFoundHandler()) // ignore favicon request (error 404)
-	http.HandleFunc("/", pageMain)                      // main page.
+	// http.Handle("/favicon.ico", http.NotFoundHandler()) // ignore favicon request (error 404)
+	http.HandleFunc("/", pageMain) // main page.
 	http.HandleFunc("/login", pageLogin)
 	http.HandleFunc("/logout", pageLogout)
 	http.HandleFunc("/register", pageRegister)
